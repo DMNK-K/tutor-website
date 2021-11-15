@@ -1,0 +1,86 @@
+﻿@page
+@using Korki.Models;
+@model Korki.Pages.SearchModel
+@{
+    ViewData["Title"] = "Wyszukiwanie";
+}
+@section Styles{ 
+    <link rel="stylesheet" href="~/css/search.css"/>
+}
+
+<div class="search_bar">
+    <form>
+        <div class="search_form_row search_form_row_top">
+            <input class="input_text search_widest" type="text" placeholder="przedmiot lub korepetytor" />
+            <input class="input_text search_wide" type="text" placeholder="miejscowość" />
+            <select class="input_select search_normal" name="Level"></select>
+            <button class="input_submit search_submit" type="submit" asp-page="/Search">Szukaj</button>
+        </div>
+        <div class="search_form_row search_form_row_bot">
+            <p>Filtruj:</p>
+            <div class="label_and_input_box search_narrow">
+                <label for="input_min_rating">Min. ocena:</label>
+                <input class="input_number browser_width_override" type="number" id="input_min_rating" />
+            </div>
+            <div class="label_and_input_box">
+                <label for="input_no_rating">Pomiń profile bez ocen:</label>
+                <input class="search_checkbox" type="checkbox" id="input_no_rating" />
+            </div>
+            <div class="label_and_input_box search_wide">
+                <label for="input_service_loc">Miejsce usługi:</label>
+                <select class="input_select" id="input_service_loc"></select>
+            </div>
+            <div class="label_and_input_box search_narrow">
+                <label for="input_max_price">Maks. cena:</label>
+                <input class="input_number browser_width_override" type="number" id="input_max_price" />
+            </div>
+        </div>
+    </form>
+</div>
+<div class="search_result_wrapper">
+    @if (Model.Results == null || Model.Results.Count == 0)
+    {
+        //no results so display relevant notice
+        <p class="no_results_notice">Brak profili spełniających wymogi wyszukiwania.</p>
+    }
+    @foreach (Tutor tutor in Model.Results)
+    {
+        //display results
+        <div class="tutor_result_box">
+            <div class="tutor_result_top">
+                <a class="tutor_name">@tutor.DisplayName</a>
+                <p class="tutor_city">@tutor.CityName</p>
+            </div>
+            <div class="tutor_result_bot">
+                <div class="tutor_result_left">
+                    <ul class="tutor_subject_list">
+                        <li>Matematyka 5-8</li>
+                        <li>Fizyka 5-8</li>
+                        <li>Informatyka 5-8</li>
+                    </ul>
+                    <div class="tutor_rating_box">
+                        @if (tutor.RatingCount > Tutor.MinRatingCount)
+                        {
+                            <div class="rating_circle @((tutor.RatingAvg >= 0.9) ? "rating_circle_full" : "")"></div>
+                            <div class="rating_circle @((tutor.RatingAvg >= 2) ? "rating_circle_full" : "")"></div>
+                            <div class="rating_circle @((tutor.RatingAvg >= 3) ? "rating_circle_full" : "")"></div>
+                            <div class="rating_circle @((tutor.RatingAvg >= 4) ? "rating_circle_full" : "")"></div>
+                            <div class="rating_circle @((tutor.RatingAvg >= 4.9) ? "rating_circle_full" : "")"></div>
+                            <span>@tutor.RatingAvgStr/5 z @tutor.RatingCount ocen</span>
+                        }
+                        else
+                        {
+                            <span>Zbyt mało opinii, by wyświetlić jednoznaczną ocenę.</span>
+                        }
+                    </div>
+                </div>
+                <div class="tutor_result_right">
+
+                </div>
+            </div>
+        </div>
+    } 
+</div>
+<button class="go_to_top_button">
+    Wróc na górę
+</button>

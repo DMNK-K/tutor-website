@@ -1,0 +1,49 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@model IndexModel
+@{
+    ViewData["Title"] = "Strona Główna";
+    Layout = "_LayoutHero";
+}
+
+<div class="hero_box">
+    <div class="hero_box_inside">
+        <h1>KorkiNa5</h1>
+        <p class="hero_introduction_text">
+            Bla bla bla, tekst tłumaczący o co chodzi w tej stronie na szybko, żeby nowi userzy wiedzieli.
+        </p>
+        <form class="hero_search_form">
+            <input class="hero_input_text hero_input_name" type="text" placeholder="przedmiot lub korepetytor" />
+            <input class="hero_input_text hero_input_city"  type="text" placeholder="miejscowość" />
+            <select class="hero_input_select"></select>
+            <button class="hero_input_submit" asp-page="/Search">Szukaj</button>
+        </form>
+
+        <div class="hero_welcome_row">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="hero_welcome_box">
+                    <p>Witamy ponownie, <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@User.Identity.Name</a></p>
+                </div>
+            }
+            else
+            {
+                <div class="hero_invitation_box">
+                    <h4>Potrzebujesz korepetycji? Załóż konto użytkownika i przeglądaj profile korepetytorów.</h4>
+                    <a>Zarejestruj</a>
+                </div>
+                <div class="hero_invitation_box">
+                    <h4>Jesteś korepetytorem? Załóż konto dla korepetytorów i zacznij oferowac swoje usługi.</h4>
+                    <a>Zarejestruj jako korepetytor</a>
+                </div>
+                <div class="hero_invitation_box">
+                    <h4>Masz już konto? Zaloguj się tutaj:</h4>
+                    <a>Zaloguj</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,187 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+:root {
+    /*--color-prim-a: rgb(70 43 99);
+    --color-prim-b: rgb(55 57 113);*/
+    /*--color-prim-a: #C8565B;
+    --color-prim-b: #C3503C;*/
+
+
+    --color-prim-a: #55558B;
+    --color-prim-b: #456096;
+
+    --color-prim-a-muted: #b6b6d3;
+}
+
+
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+    margin:0;
+    min-height:100vh;
+    padding-bottom:60px;
+    position:relative;
+    font-family:"Segoe UI", "Roboto", "Segoe UI Emoji", "Segoe UI Symbol", "Arial";
+}
+
+a{
+
+}
+
+.link_on_dark{
+    color:white;
+}
+
+.link_on_bright{
+
+}
+
+button{
+    cursor:pointer;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 64px;
+    font-weight:bold;
+}
+
+h2 {
+    font-size:40px;
+    font-weight: bold;
+}
+
+h3{
+    font-size:28px;
+    font-weight:normal;
+}
+
+h4 {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+/* Header and nav stuff*/
+header{
+    height:60px;
+}
+
+.nav_main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    background-color: var(--color-prim-a);
+}
+
+.nav_container{
+    height:100%;
+}
+
+.nav_home_logo_container{
+    margin-right:auto;
+    padding-left:20px;
+}
+
+.nav_list{
+    height:100%;
+    padding:0;
+    margin:0;
+    list-style-type:none;
+    display: flex;
+}
+
+.nav_list li{
+    height:100%;
+    min-width:100px;
+}
+
+.nav_link{
+    display:block;
+    height:100%;
+    line-height:60px;
+    text-align:center;
+    color:white;
+    text-decoration:none;
+}
+
+.nav_link:hover{
+    color:white;
+    text-decoration:none;
+}
+
+.home_link {
+    font-size:24px;
+    font-weight:bold;
+}
+
+.home_link:hover{
+    background-color:transparent;
+}
+
+/* Footer styles*/
+footer {
+    width:100%;
+    height: 60px;
+    position:absolute;
+    bottom:0;
+    white-space: nowrap;
+    line-height: 60px;
+    text-align: center;
+}
+
+.footer_element{
+    height:100%;
+    display:inline-block;
+}
+
+/*Inputs site-wide*/
+
+input {
+    font-family: "Segoe UI", "Roboto", "Segoe UI Emoji", "Segoe UI Symbol", "Arial";
+}
+
+.browser_width_override{
+    width:1px; /*for overriding browser imposed width of inputs, to make flex work as intended*/
+}
+
+.input_text {
+
+}
+
+.input_select {
+
+}
+
+.input_submit {
+
+}
+
+label{
+    margin:0;
+}
+
+.label_and_input_box{
+    display:flex;
+    align-items:center;
+}
+
+.label_and_input_box input, .label_and_input_box select{
+    flex-grow:1;
+}
+
+.go_to_top_button{
+    position:absolute;
+    bottom:80px;
+    right:120px;
+}

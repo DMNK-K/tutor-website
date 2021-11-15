@@ -1,0 +1,18 @@
+﻿@page
+@model Korki.Pages.TutorOfferModel
+@{
+    ViewData["Title"] = "Oferta: " + Model.Tutor.DisplayName;
+}
+
+<div>
+    @if (Model.Tutor == null)
+    {
+        <h2>Profil nie istnieje.</h2>
+    }
+    else
+    {
+        <h2>@Model.Tutor.DisplayName</h2>
+
+    }
+
+</div>

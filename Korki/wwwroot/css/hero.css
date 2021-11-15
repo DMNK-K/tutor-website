@@ -1,0 +1,97 @@
+﻿.nav_hero {
+    
+}
+
+.nav_hero_container{
+    
+}
+
+.footer_hero
+{
+    color:white;
+    background-color:var(--color-prim-b);
+}
+
+.footer_hero a{
+    color:white;
+}
+
+.body_hero{
+    padding-bottom:0;
+}
+
+.hero_content {
+    color: white;
+    width: 100%;
+    position: absolute;
+    bottom: 60px;
+    top: 60px;
+    background: linear-gradient(var(--color-prim-a), var(--color-prim-b));
+}
+
+.hero_box{
+    height:100%;
+}
+
+.hero_box_inside {
+    padding-top: 130px;
+}
+
+.hero_introduction_text {
+    width: 33%;
+    margin-left: 33.5%;
+    text-align-last: center;
+    text-align: justify;
+    margin-top: 40px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.hero_welcome_row{
+    width:60%;
+    margin-left:20%;
+    margin-top:70px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.hero_invitation_box{
+    width:30%;
+}
+
+.hero_invitation_box a{
+    display:block;
+}
+
+.hero_search_form{
+    margin-top:40px;
+    height:60px;
+    display:flex;
+    width:62%;
+    margin-left:19%;
+    justify-content:space-between;
+}
+
+.hero_input_text{
+    font-family:"Segoe UI", "Roboto", "Segoe UI Emoji", "Arial";
+    padding:0 8px;
+    font-size:16px;
+}
+
+.hero_input_city{
+    width:25%;
+}
+
+.hero_input_name {
+    width: 30%;
+}
+
+.hero_input_select {
+    width: 20%;
+    font-family: "Segoe UI", "Roboto", "Segoe UI Emoji", "Arial";
+    font-size: 16px;
+}
+
+.hero_input_submit{
+
+}

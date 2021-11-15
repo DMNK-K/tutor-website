@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KorkiNa5 - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/hero.css" />
+    @RenderSection("Styles", false)
+</head>
+<body class="body_hero">
+    <header>
+        <nav class="nav_main nav_hero">
+            <div class="nav_container nav_hero_container">
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>
+    </header>
+
+    <main class="hero_content" role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="footer_hero">
+        <div class="footer_element">
+            &copy; 2021 - Dominik Kreiser |
+            <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
