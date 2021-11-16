@@ -3,16 +3,43 @@
 @{
     ViewData["Title"] = "Oferta: " + Model.Tutor.DisplayName;
 }
+@section Styles{
+    <link rel="stylesheet" href="~/css/tutor_offer.css" />
+}
 
-<div>
+<div class="tutor_offer_wrapper">
     @if (Model.Tutor == null)
     {
         <h2>Profil nie istnieje.</h2>
+        <p>Coś poszło nie tak.</p>
     }
     else
     {
         <h2>@Model.Tutor.DisplayName</h2>
+        <div class="full_flex_row">
+            <p class="tutor_desc">@Model.Tutor.Desc</p>
+            <div class="tutor_info_box">
 
+            </div>
+        </div>
+        <div class="full_flex_row">
+            <table class="tutor_timetable">
+                <tr>
+                </tr>
+                <tr>
+                </tr>
+            </table>
+        </div>
+        <div class="full_flex_row">
+            <h4>Oceny:</h4>
+            <div class="rating_widget">
+                <button class="rating_button"></button>
+                <button class="rating_button"></button>
+                <button class="rating_button"></button>
+                <button class="rating_button"></button>
+                <button class="rating_button"></button>
+            </div>
+        </div>
     }
 
 </div>

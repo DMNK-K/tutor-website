@@ -66,7 +66,12 @@ h3{
     font-weight:normal;
 }
 
-h4 {
+h4{
+    font-size:20px;
+    font-weight:bold;
+}
+
+h5 {
     font-size: 16px;
     font-weight: normal;
 }
@@ -184,4 +189,11 @@ label{
     position:absolute;
     bottom:80px;
     right:120px;
+}
+
+/* body layout stuff*/
+.full_flex_row{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
 }

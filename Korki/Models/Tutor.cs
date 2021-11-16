@@ -15,6 +15,8 @@ namespace Korki.Models
         public bool UsesFormalName { get; private set; }
         public string DisplayName => (UsesFormalName) ? FormalName : NameFirst + " " + NameLast;
 
+        public string Desc { get; set; }
+
         public string CityName { get; set; }
 
         public Dictionary<string, List<TeachingLevel>> Subjects { get; private set; } = new Dictionary<string, List<TeachingLevel>>();
