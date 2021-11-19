@@ -1,4 +1,8 @@
 ﻿@page
+@using Korki.Models;
+@using Korki.Data;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 @model Korki.Pages.TutorOfferModel
 @{
     ViewData["Title"] = "Oferta: " + Model.Tutor.DisplayName;
@@ -11,7 +15,7 @@
     @if (Model.Tutor == null)
     {
         <h2>Profil nie istnieje.</h2>
-        <p>Coś poszło nie tak.</p>
+        <p>Coś poszło nie tak. Z reguły dzieje się tak, gdy adres url do strony korepetytora jest nieprawidłowy, bądź profil został usunięty.</p>
     }
     else
     {
@@ -19,14 +23,43 @@
         <div class="full_flex_row">
             <p class="tutor_desc">@Model.Tutor.Desc</p>
             <div class="tutor_info_box">
-
+                <div class="tutor_info_box_row">
+                    <span>Udziela korepetycji w:</span>
+                    <span>@Model.Tutor.CityName @((Model.Tutor.ProvidesNearCity) ? "i okolice (+" + Model.Tutor.RangeIncrement + ")"  : "")</span>
+                </div>
+                <p>Przedmioty:</p>
+                <ul class="offer_subject_list">
+                    @foreach (string key in Model.Tutor.Subjects.Keys)
+                    {
+                        <li>@key, poziom @Model.GetLevelStr(key)</li>
+                    }
+                </ul>
+                <div class="tutor_info_box_row">
+                    <span>Cena za sesję:</span>
+                    <span>@Model.Tutor.PriceText</span>
+                </div>
+                <p>Dodatkowe informacje:</p>
+                <p>@Model.Tutor.BonusInfo</p>
             </div>
         </div>
         <div class="full_flex_row">
             <table class="tutor_timetable">
                 <tr>
+                    @foreach (DateTime date in Model.Timetable.AvailableDates.Keys)
+                    {
+                        <th>@ConstantTexts.GetDayOfWeekName(date.DayOfWeek) + " " + date.Date.ToString("dd.MM.yyyy")</th>
+                    }
                 </tr>
                 <tr>
+                    @foreach (DateTime date in Model.Timetable.AvailableDates.Keys)
+	                {
+		                <td>
+                            @foreach (DateTime preciseTime in Model.Timetable.AvailableDates[date])
+	                        {
+		                        <div class="timetable_time">@preciseTime.ToString("HH:mm")</div>
+	                        }
+                        </td>
+	                }
                 </tr>
             </table>
         </div>
@@ -38,8 +71,20 @@
                 <button class="rating_button"></button>
                 <button class="rating_button"></button>
                 <button class="rating_button"></button>
+                @if (Model.Tutor.RatingCount >= Tutor.MinRatingCount)
+                {
+                    <span>@Model.Tutor.RatingAvgStr/5 z @Model.Tutor.RatingCount ocen</span>
+                }
+                else
+                {
+                    <span>@ConstantTexts.NotEnoughRatings</span>
+                }
             </div>
         </div>
+        @if (!SignInManager.IsSignedIn(User))
+        {
+            <p class="rating_notice">Tylko zalogowani użytkownicy mogą wystawiać oceny.</p>
+        }
     }
 
 </div>

@@ -1,5 +1,6 @@
 ﻿@page
 @using Korki.Models;
+@using Korki.Data;
 @model Korki.Pages.SearchModel
 @{
     ViewData["Title"] = "Wyszukiwanie";
@@ -59,7 +60,7 @@
                         <li>Informatyka 5-8</li>
                     </ul>
                     <div class="tutor_rating_box">
-                        @if (tutor.RatingCount > Tutor.MinRatingCount)
+                        @if (tutor.RatingCount >= Tutor.MinRatingCount)
                         {
                             <div class="rating_circle @((tutor.RatingAvg >= 0.9) ? "rating_circle_full" : "")"></div>
                             <div class="rating_circle @((tutor.RatingAvg >= 2) ? "rating_circle_full" : "")"></div>
@@ -70,7 +71,7 @@
                         }
                         else
                         {
-                            <span>Zbyt mało opinii, by wyświetlić jednoznaczną ocenę.</span>
+                            <span>@ConstantTexts.NotEnoughRatings</span>
                         }
                     </div>
                 </div>

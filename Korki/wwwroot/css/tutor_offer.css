@@ -1,17 +1,21 @@
-﻿.tutor_offer_wrapper{
-
+﻿.tutor_offer_wrapper {
+    width: 66%;
+    margin: 40px 0 0 17%;
+    padding-bottom:20px;
 }
 
 .tutor_desc{
-
+    font-size:16px;
+    text-align:justify;
+    text-align-last:left;
 }
 
 .tutor_info_box{
-
+    min-width:40%;
 }
 
 .tutor_timetable{
-
+    width:100%;
 }
 
 
