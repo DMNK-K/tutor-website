@@ -10,30 +10,30 @@
 }
 
 <div class="search_bar">
-    <form>
+    <form method="get" asp-page="/Search">
         <div class="search_form_row search_form_row_top">
-            <input class="input_text search_widest" type="text" placeholder="przedmiot lub korepetytor" />
-            <input class="input_text search_wide" type="text" placeholder="miejscowość" />
-            <select class="input_select search_normal" name="Level"></select>
-            <button class="input_submit search_submit" type="submit" asp-page="/Search">Szukaj</button>
+            <input class="input_text search_widest" type="text" placeholder="przedmiot lub korepetytor" asp-for="BasicTerms.Name"/>
+            <input class="input_text search_wide" type="text" placeholder="miejscowość" asp-for="BasicTerms.City"/>
+            <select class="input_select search_normal" name="LevelStr" asp-for="BasicTerms.LevelStr" asp-items="Model.BasicTerms.PickableLevels"></select>
+            <button class="input_submit search_submit" type="submit">Szukaj</button>
         </div>
         <div class="search_form_row search_form_row_bot">
             <p>Filtruj:</p>
             <div class="label_and_input_box search_narrow">
                 <label for="input_min_rating">Min. ocena:</label>
-                <input class="input_number browser_width_override" type="number" id="input_min_rating" />
+                <input class="input_number browser_width_override" type="number" id="input_min_rating" asp-for="MinRating"/>
             </div>
             <div class="label_and_input_box">
                 <label for="input_no_rating">Pomiń profile bez ocen:</label>
-                <input class="search_checkbox" type="checkbox" id="input_no_rating" />
+                <input class="search_checkbox" type="checkbox" asp-for="SkipNonRated" id="input_no_rating"/>
             </div>
             <div class="label_and_input_box search_wide">
                 <label for="input_service_loc">Miejsce usługi:</label>
-                <select class="input_select" id="input_service_loc"></select>
+                <select class="input_select" name="PlaceStr" asp-for="PlaceStr" asp-items="Model.PickablePlaces" id="input_service_loc"></select>
             </div>
             <div class="label_and_input_box search_narrow">
                 <label for="input_max_price">Maks. cena:</label>
-                <input class="input_number browser_width_override" type="number" id="input_max_price" />
+                <input class="input_number browser_width_override" type="number" id="input_max_price" asp-for="MaxPrice"/>
             </div>
         </div>
     </form>
@@ -49,7 +49,7 @@
         //display results
         <div class="tutor_result_box">
             <div class="tutor_result_top">
-                <a class="tutor_name">@tutor.DisplayName</a>
+                <a class="tutor_name" asp-page="/TutorOffer?TID=@tutor.TID">@tutor.DisplayName</a>
                 <p class="tutor_city">@tutor.CityName</p>
             </div>
             <div class="tutor_result_bot">

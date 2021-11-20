@@ -15,11 +15,12 @@
         <p class="hero_introduction_text">
             Bla bla bla, tekst tłumaczący o co chodzi w tej stronie na szybko, żeby nowi userzy wiedzieli.
         </p>
-        <form class="hero_search_form">
-            <input class="hero_input_text hero_input_name" type="text" placeholder="przedmiot lub korepetytor" />
-            <input class="hero_input_text hero_input_city"  type="text" placeholder="miejscowość" />
-            <select class="hero_input_select"></select>
-            <button class="hero_input_submit" asp-page="/Search">Szukaj</button>
+        @* notice the form is get method, but goes to Search page, that page model also has BasicSearchTerms model in it*@
+        <form method="get" asp-page="/Search" class="hero_search_form">
+            <input class="hero_input_text hero_input_name" asp-for="BasicTerms.Name" type="text" placeholder="przedmiot lub korepetytor" />
+            <input class="hero_input_text hero_input_city" asp-for="BasicTerms.City" type="text" placeholder="miejscowość" />
+            <select class="hero_input_select" asp-for="BasicTerms.LevelStr" asp-items="Model.BasicTerms.PickableLevels"></select>
+            <button class="hero_input_submit" type="submit">Szukaj</button>
         </form>
 
         <div class="hero_welcome_row">

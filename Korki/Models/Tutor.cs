@@ -10,6 +10,7 @@ namespace Korki.Models
     {
         public static int MinRatingCount { get; } = 3;
 
+        public int TID { get; set; } = -1;
         public string NameFirst { get; private set; }
         public string NameLast { get; private set; }
         public string FormalName { get; private set; }

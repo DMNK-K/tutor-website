@@ -9,5 +9,11 @@ namespace Korki.Models
     {
         public Dictionary<DateTime, List<DateTime>> AvailableDates { get; set; } = new Dictionary<DateTime, List<DateTime>>();
         
+
+        public static TutorTimetable GetSampleTimetable()
+        {
+            TutorTimetable t = new TutorTimetable();
+            return t;
+        }
     }
 }

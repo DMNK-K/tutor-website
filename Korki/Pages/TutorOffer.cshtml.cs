@@ -10,6 +10,9 @@ namespace Korki.Pages
 {
     public class TutorOfferModel : PageModel
     {
+        [BindProperty(SupportsGet = true)]
+        public int TID { get; set; }
+
         public Tutor Tutor { get; set; }
         public TutorTimetable Timetable { get; set; }
 
@@ -60,8 +63,12 @@ namespace Korki.Pages
 
         public void OnGet()
         {
-            Tutor = Tutor.GetSampleTutor();
-            Timetable = new TutorTimetable();
+            if (TID == -1)
+            {
+                Tutor = Tutor.GetSampleTutor();
+                Timetable = TutorTimetable.GetSampleTimetable();
+            }
+            
         }
     }
 }

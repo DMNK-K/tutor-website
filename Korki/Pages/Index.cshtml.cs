@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Korki.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,6 +12,8 @@ namespace Korki.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+
+        public BasicSearchTerms BasicTerms { get; set; } = new BasicSearchTerms();
 
         public IndexModel(ILogger<IndexModel> logger)
         {
