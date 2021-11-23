@@ -35,4 +35,53 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="ID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="60fa44ab-692a-4bce-ae3a-eaac9114bab3" ChangeDateTime="11/23/2021 23:21:49">
+    <Property Name="ElementName" Value="[dbo].[Ratings].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ratings]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RaterUserID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4a62fff2-eeb7-4db0-8032-7684f4e088f7" ChangeDateTime="11/23/2021 23:22:18">
+    <Property Name="ElementName" Value="[dbo].[Ratings].[RaterUserID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ratings]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RatingGiverUserID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e81b9876-0c8b-4f3c-b7c5-19b313c90f99" ChangeDateTime="11/23/2021 23:23:12">
+    <Property Name="ElementName" Value="[dbo].[Ratings].[RatingGiverUserID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ratings]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserIDOfGiver" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="735e9308-ee5e-487a-a767-df1acf43fb52" ChangeDateTime="11/23/2021 23:23:25">
+    <Property Name="ElementName" Value="[dbo].[Ratings].[RatingReceiverUserID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ratings]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserIDReceiver" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="45b93cc0-365e-4be9-8807-3a4c88264775" ChangeDateTime="11/23/2021 23:23:32">
+    <Property Name="ElementName" Value="[dbo].[Ratings].[UserIDOfGiver]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ratings]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserIDGiver" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bcd29f06-c288-4b76-85a2-b75303391040" ChangeDateTime="11/23/2021 23:23:46">
+    <Property Name="ElementName" Value="[dbo].[Ratings].[UserIDGiver]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ratings]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="GiverUID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="761c19a4-4b00-4b68-ad40-ea41e64ca813" ChangeDateTime="11/23/2021 23:23:51">
+    <Property Name="ElementName" Value="[dbo].[Ratings].[UserIDReceiver]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ratings]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ReceiverUID" />
+  </Operation>
 </Operations>

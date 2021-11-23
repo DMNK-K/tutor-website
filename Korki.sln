@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Korki", "Korki\Korki.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KorkiDataAccessLib", "KorkiDataAccessLib\KorkiDataAccessLib.csproj", "{BCC26EEF-306B-44D9-8FB4-8858B1A32C14}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "KorkiDB", "KorkiDB\KorkiDB.sqlproj", "{AF054FC2-18DA-4509-8583-AAC781EB3771}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		{BCC26EEF-306B-44D9-8FB4-8858B1A32C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCC26EEF-306B-44D9-8FB4-8858B1A32C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCC26EEF-306B-44D9-8FB4-8858B1A32C14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF054FC2-18DA-4509-8583-AAC781EB3771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF054FC2-18DA-4509-8583-AAC781EB3771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF054FC2-18DA-4509-8583-AAC781EB3771}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AF054FC2-18DA-4509-8583-AAC781EB3771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF054FC2-18DA-4509-8583-AAC781EB3771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF054FC2-18DA-4509-8583-AAC781EB3771}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
