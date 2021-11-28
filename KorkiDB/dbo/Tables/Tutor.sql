@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Tutor]
 (
-	[ID] INT NOT NULL PRIMARY KEY, 
+	[ID] INT NOT NULL PRIMARY KEY IDENTITY, 
     [UserID] INT NOT NULL, 
     [NameFirst] NVARCHAR(50) NOT NULL, 
     [NameLast] NVARCHAR(50) NOT NULL, 
@@ -13,5 +13,8 @@
     [InfoPrice] NVARCHAR(250) NULL, 
     [InfoBonus] NVARCHAR(500) NULL, 
     [City] NVARCHAR(50) NULL, 
-    [ServiceRange] TINYINT NOT NULL DEFAULT 0
+    [ServiceRange] TINYINT NOT NULL DEFAULT 0, 
+    [Timetable] NVARCHAR(1000) NULL, 
+    [Operational] BIT NOT NULL DEFAULT 1, 
+    CONSTRAINT [FK_Tutor_User] FOREIGN KEY ([UserID]) REFERENCES [User]([ID]) 
 )

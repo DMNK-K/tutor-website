@@ -84,4 +84,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="ReceiverUID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="756208bb-a2b3-43ea-bf46-f8803b4479a8" ChangeDateTime="11/28/2021 17:54:30">
+    <Property Name="ElementName" Value="[dbo].[User].[Deleted]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsDeleted" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2b8e0018-be0f-4dfe-ad4a-97d5c42d6471" ChangeDateTime="11/28/2021 17:54:34">
+    <Property Name="ElementName" Value="[dbo].[User].[Suspended]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsSuspended" />
+  </Operation>
 </Operations>
