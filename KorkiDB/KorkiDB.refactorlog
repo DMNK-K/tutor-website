@@ -98,4 +98,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="IsSuspended" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="34dd905a-afd0-4aed-ab25-eba2c82ade14" ChangeDateTime="11/29/2021 00:10:29">
+    <Property Name="ElementName" Value="[dbo].[City].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[City]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3aba4f04-2978-493c-8f35-c10efee1027d" ChangeDateTime="11/29/2021 00:17:31">
+    <Property Name="ElementName" Value="[dbo].[City].[Voivodeship]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[City]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="VoivodeshipAlphaIndex" />
+  </Operation>
 </Operations>

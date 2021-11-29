@@ -16,5 +16,6 @@
     [ServiceRange] TINYINT NOT NULL DEFAULT 0, 
     [Timetable] NVARCHAR(1000) NULL, 
     [Operational] BIT NOT NULL DEFAULT 1, 
+    [Subjects] NVARCHAR(200) NULL, 
     CONSTRAINT [FK_Tutor_User] FOREIGN KEY ([UserID]) REFERENCES [User]([ID]) 
 )
