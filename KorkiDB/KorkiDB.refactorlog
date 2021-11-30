@@ -112,4 +112,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="VoivodeshipAlphaIndex" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="7ebc472d-abad-4f9a-9f28-bcdc9626292b" ChangeDateTime="11/29/2021 13:18:33">
+    <Property Name="ElementName" Value="[dbo].[Tutor].[City]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Tutor]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CityID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1f7cb45e-34b9-4fbe-bd8b-a4650d9814e1" ChangeDateTime="11/29/2021 18:01:11">
+    <Property Name="ElementName" Value="[dbo].[Tutor].[Subjects]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Tutor]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SubjectsStr" />
+  </Operation>
 </Operations>

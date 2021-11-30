@@ -3,34 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Korki.Models;
+using Korki.ExtAndUtility;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using KorkiDataAccessLib.Access;
+using KorkiDataAccessLib.Models;
+using Tutor = Korki.Models.Tutor;
 
 namespace Korki.Pages
 {
     public class SearchModel : PageModel
     {
-        ////basic search terms
-        //[BindProperty(SupportsGet = true)]
-        //public string Name { get; set; }
-        //[BindProperty(SupportsGet = true)]
-        //public string City { get; set; }
-        //private string defaultCity = "Warszawa";
-        //[BindProperty(SupportsGet = true)]
-        //public string LevelStr { get; set; }
-
-        //public List<SelectListItem> PickableLevels { get; } = new List<SelectListItem>()
-        //{
-        //    new SelectListItem("Klasy 1-3 szko³y podst.", ((int)TeachingLevel.OneToThree).ToString()),
-        //    new SelectListItem("Klasy 4-6 szko³y podst.", ((int)TeachingLevel.FourToSix).ToString()),
-        //    new SelectListItem("Klasy 7-8 szko³y podst.", ((int)TeachingLevel.SevenEight).ToString()),
-        //    new SelectListItem("Szko³a œrednia", ((int)TeachingLevel.SecondaryEdu).ToString()),
-        //    new SelectListItem("Szko³a wy¿sza", ((int)TeachingLevel.HigherEdu).ToString()),
-        //};
-
-        //public TeachingLevel Level { get; private set; }
-
         [BindProperty(SupportsGet = true)]
         public BasicSearchTerms BasicTerms { get; set; } = new BasicSearchTerms();
 
@@ -74,6 +58,10 @@ namespace Korki.Pages
             {
                 Place = TutoringPlace.Any;
             }
+
+            TutorFiltersBasic filter = BasicTerms.Map();
+            TutorFiltersAdv advFilter = new TutorFiltersAdv(MinRating, MaxPrice, SkipNonRated, (int)Place);
+            //Results = TutorAccess.GetTutorsFiltered(filter, advFilter).Map();
         }
     }
 }

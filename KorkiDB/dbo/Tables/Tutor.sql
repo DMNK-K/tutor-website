@@ -12,10 +12,12 @@
     [RatingSum] INT NOT NULL DEFAULT 0, 
     [InfoPrice] NVARCHAR(250) NULL, 
     [InfoBonus] NVARCHAR(500) NULL, 
-    [City] NVARCHAR(50) NULL, 
+    [CityID] INT NOT NULL, 
     [ServiceRange] TINYINT NOT NULL DEFAULT 0, 
     [Timetable] NVARCHAR(1000) NULL, 
     [Operational] BIT NOT NULL DEFAULT 1, 
-    [Subjects] NVARCHAR(200) NULL, 
-    CONSTRAINT [FK_Tutor_User] FOREIGN KEY ([UserID]) REFERENCES [User]([ID]) 
+    [SubjectsStr] NVARCHAR(200) NULL, 
+    [IsShowcase] BIT NOT NULL DEFAULT 0, 
+    CONSTRAINT [FK_Tutor_User] FOREIGN KEY ([UserID]) REFERENCES [User]([ID]), 
+    CONSTRAINT [FK_Tutor_City] FOREIGN KEY ([CityID]) REFERENCES [City]([ID]) 
 )

@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Korki.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Korki.ExtAndUtility;
+using KorkiDataAccessLib.Access;
 
 namespace Korki.Pages
 {
@@ -67,6 +69,10 @@ namespace Korki.Pages
             {
                 Tutor = Tutor.GetSampleTutor();
                 Timetable = TutorTimetable.GetSampleTimetable();
+            }
+            else
+            {
+                Tutor = TutorAccess.GetTutor(TID).Map();
             }
             
         }
