@@ -44,6 +44,7 @@ namespace Korki.ExtAndUtility
                 RatingSum = source.RatingSum,
                 RatingCount = source.RatingCount,
                 GoesToClient = source.GoesToClient,
+                CityName = source.City.Name,
             };
             return result;
         }

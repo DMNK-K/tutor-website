@@ -11,5 +11,6 @@
     [DeletionInfo] NVARCHAR(50) NULL, 
     [IsSuspended] BIT NOT NULL DEFAULT 0, 
     [SuspentionInfo] NVARCHAR(50) NULL, 
-    [SuspentionDateTime] DATETIMEOFFSET(2) NULL 
+    [SuspentionDateTime] DATETIMEOFFSET(2) NULL, 
+    [IsShowcase] BIT NOT NULL DEFAULT 0 
 )
