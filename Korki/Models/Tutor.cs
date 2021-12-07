@@ -30,7 +30,7 @@ namespace Korki.Models
 
         public int RatingSum { get; set; } = 0;
         public int RatingCount { get; set; } = 0;
-        public static int MinRatingCount => Models.Tutor.MinRatingCount;
+        public static int MinRatingCount => 3;
         public float RatingAvg => (RatingCount == 0) ? 0 : RatingSum * 1f / RatingCount;
         public string RatingAvgStr => (RatingCount == 0) ? "" : (RatingSum / RatingCount).ToString("F1");
 

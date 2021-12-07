@@ -55,8 +55,31 @@ namespace Korki.Pages
             //this seems like a hack, but achieves what i'm after - without calling ModelStateClear();
             //the results of calling BasicTerms.Validate() didn't appear on the newly constructed form,
             //with ModelState.Clear() the form is repopulated with the validated values
-            ModelState.Clear(); 
+            ModelState.Clear();
+            ValidateAdvancedTerms();
 
+            TutorFilters filter = BasicTerms.Map(MinRating, SkipNonRated, MaxPrice, (int)Place);
+
+            // this stuff is from when i was trying to fix an access violation error 
+            // that was elusive, seemed to happen right after OnExit finished its job
+            // and resolved itself? suspicious, leaving this just in case
+
+            //List<KorkiDataAccessLib.Models.Tutor> unmappedResults = reader.GetAllWorkingTutors();
+            //Results = reader.GetTutorsFiltered(filter).Map();
+            //Results = new List<Tutor>();
+            //for (int i = 0; i < 20 && i < unmappedResults.Count; i++)
+            //{
+            //    Results.Add(ModelMapper.MapTutor(unmappedResults[i]));
+            //}
+            //Results = ModelMapper.MapTutors(unmappedResults);
+
+            //Results = ModelMapper.MapTutors(reader.GetAllWorkingTutors());
+            Results = ModelMapper.MapTutors(reader.GetTutorsFiltered(filter));
+
+        }
+
+        private void ValidateAdvancedTerms()
+        {
             if (MaxPrice < 0) { MaxPrice = 0; }
             MinRating = Math.Clamp(MinRating, 0, 5);
 
@@ -69,12 +92,6 @@ namespace Korki.Pages
             {
                 Place = TutoringPlace.Any;
             }
-
-            TutorFilters filter = BasicTerms.Map(MinRating, SkipNonRated, MaxPrice, (int)Place);
-            List<KorkiDataAccessLib.Models.Tutor> unmappedResults = reader.GetAllWorkingTutors();
-            //Results = reader.GetTutorsFiltered(filter).Map();
-            Results = ModelMapper.MapTutors(unmappedResults);
-
         }
     }
 }

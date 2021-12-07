@@ -10,7 +10,7 @@ namespace KorkiDataAccessLib.Models
         public string NameStr { get; private set; } = "";
         public string NameFirst { get; private set; } = "";
         public string NameLast { get; private set; } = "";
-        public string City { get; private set; }
+        public string City { get; private set; } = "";
         public int Lvl { get; private set; }
 
         public bool IsAdvanced { get; }

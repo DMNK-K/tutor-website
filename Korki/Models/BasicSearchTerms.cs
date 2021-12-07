@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Korki.ExtAndUtility;
 
 namespace Korki.Models
 {
@@ -28,10 +29,12 @@ namespace Korki.Models
 
         public void Validate()
         {
-            if (string.IsNullOrWhiteSpace(City))
-            {
-                City = defaultCity;
-            }
+            //truncating first, and then trimming is on purpose, to cut down on extreeeeemely long strings before trimming happens
+            Name = Name.LimitLength(50).TrimAsTextInput();
+            City = City.LimitLength(70);
+            City = (string.IsNullOrWhiteSpace(City)) ? defaultCity : City.TrimAsTextInput();
+            LevelStr = LevelStr.LimitLength(3);
+
             int levelInt;
             if (int.TryParse(LevelStr, out levelInt) && Enum.IsDefined(typeof(TeachingLevel), levelInt))
             {

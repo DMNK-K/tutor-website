@@ -23,6 +23,7 @@
     width: 66%;
     margin: 40px 0 0 17%;
     display: flex;
+    flex-wrap:wrap;
     justify-content: flex-start;
 }
 

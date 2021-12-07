@@ -44,43 +44,48 @@
         //no results so display relevant notice
         <p class="no_results_notice">Brak profili spełniających wymogi wyszukiwania.</p>
     }
-    @foreach (Tutor tutor in Model.Results)
+    else
     {
-        //display results
-        <div class="tutor_result_box">
-            <div class="tutor_result_top">
-                <a class="tutor_name" asp-page="/TutorOffer?TID=@tutor.TID">@tutor.DisplayName</a>
-                <p class="tutor_city">@tutor.CityName</p>
-            </div>
-            <div class="tutor_result_bot">
-                <div class="tutor_result_left">
-                    <ul class="tutor_subject_list">
-                        <li>Matematyka 5-8</li>
-                        <li>Fizyka 5-8</li>
-                        <li>Informatyka 5-8</li>
-                    </ul>
-                    <div class="tutor_rating_box">
-                        @if (tutor.RatingCount >= Tutor.MinRatingCount)
-                        {
-                            <div class="rating_circle @((tutor.RatingAvg >= 0.9) ? "rating_circle_full" : "")"></div>
-                            <div class="rating_circle @((tutor.RatingAvg >= 2) ? "rating_circle_full" : "")"></div>
-                            <div class="rating_circle @((tutor.RatingAvg >= 3) ? "rating_circle_full" : "")"></div>
-                            <div class="rating_circle @((tutor.RatingAvg >= 4) ? "rating_circle_full" : "")"></div>
-                            <div class="rating_circle @((tutor.RatingAvg >= 4.9) ? "rating_circle_full" : "")"></div>
-                            <span>@tutor.RatingAvgStr/5 z @tutor.RatingCount ocen</span>
-                        }
-                        else
-                        {
-                            <span>@ConstantTexts.NotEnoughRatings</span>
-                        }
+        @foreach (Tutor tutor in Model.Results)
+        {
+            //display results
+            <div class="tutor_result_box">
+                <div class="tutor_result_top">
+                    <a class="tutor_name" asp-page="/TutorOffer" asp-route-TID="@tutor.TID">@tutor.DisplayName</a>
+                    <p class="tutor_city">@tutor.CityName</p>
+                </div>
+                <div class="tutor_result_bot">
+                    <div class="tutor_result_left">
+                        <ul class="tutor_subject_list">
+                            @foreach (string subject in tutor.Subjects.Keys)
+                            {
+                                <li>@subject </li>
+                            }
+                        </ul>
+                        <div class="tutor_rating_box">
+                            @if (tutor.RatingCount >= Tutor.MinRatingCount)
+                            {
+                                <div class="rating_circle @((tutor.RatingAvg >= 0.9) ? "rating_circle_full" : "")"></div>
+                                <div class="rating_circle @((tutor.RatingAvg >= 2) ? "rating_circle_full" : "")"></div>
+                                <div class="rating_circle @((tutor.RatingAvg >= 3) ? "rating_circle_full" : "")"></div>
+                                <div class="rating_circle @((tutor.RatingAvg >= 4) ? "rating_circle_full" : "")"></div>
+                                <div class="rating_circle @((tutor.RatingAvg >= 4.9) ? "rating_circle_full" : "")"></div>
+                                <span>@tutor.RatingAvgStr/5 z @tutor.RatingCount ocen</span>
+                            }
+                            else
+                            {
+                                <span>@ConstantTexts.NotEnoughRatings</span>
+                            }
+                        </div>
+                    </div>
+                    <div class="tutor_result_right">
+
                     </div>
                 </div>
-                <div class="tutor_result_right">
-
-                </div>
             </div>
-        </div>
-    } 
+        }
+    }
+
 </div>
 <button class="go_to_top_button">
     Wróc na górę
