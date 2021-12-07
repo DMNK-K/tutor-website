@@ -14,7 +14,7 @@
         <div class="search_form_row search_form_row_top">
             <input class="input_text search_widest" type="text" placeholder="przedmiot lub korepetytor" asp-for="BasicTerms.Name"/>
             <input class="input_text search_wide" type="text" placeholder="miejscowość" asp-for="BasicTerms.City"/>
-            <select class="input_select search_normal" name="LevelStr" asp-for="BasicTerms.LevelStr" asp-items="Model.BasicTerms.PickableLevels"></select>
+            <select class="input_select search_normal" name="BasicTerms.LevelStr" asp-for="BasicTerms.LevelStr" asp-items="Model.BasicTerms.PickableLevels"></select>
             <button class="input_submit search_submit" type="submit">Szukaj</button>
         </div>
         <div class="search_form_row search_form_row_bot">

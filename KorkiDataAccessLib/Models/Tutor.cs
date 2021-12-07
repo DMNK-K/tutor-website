@@ -19,6 +19,7 @@ namespace KorkiDataAccessLib.Models
 
         public int RatingCount { get; set; }
         public int RatingSum { get; set; }
+        public static int MinRatingCount { get; } = 3;
 
         public int CityID { get; set; }
         public City City { get; set; }

@@ -3,18 +3,26 @@ using System.Collections.Generic;
 using System.Text;
 using System.Configuration;
 using System.Data;
+using Microsoft.Extensions.Configuration;
+using System.Data.SqlClient;
+//using Microsoft.Extensions.Configuration;
 
 namespace KorkiDataAccessLib.Access
 {
-    public static class SQLAccess
+    public class SQLAccess : ISQLAccess
     {
-        private static string korkiConnName = "KorkiDBConnection";
+        private readonly IConfiguration _config;
+        private string korkiConnName = "KorkiDBConnection";
+        public string ConnectionStr => _config.GetConnectionString(korkiConnName);
 
-        public static string KorkiConnectionStr => GetConnString(korkiConnName);
-
-        public static string GetConnString(string connName)
+        public SQLAccess(IConfiguration config)
         {
-            return ConfigurationManager.ConnectionStrings[connName].ConnectionString;
+            _config = config;
+        }
+
+        public SqlConnection GetConnection()
+        {
+            return new SqlConnection(ConnectionStr);
         }
     }
 }

@@ -18,6 +18,13 @@ namespace Korki.Pages
         public Tutor Tutor { get; set; }
         public TutorTimetable Timetable { get; set; }
 
+        private readonly ITutorReader reader;
+
+        public TutorOfferModel(ITutorReader reader)
+        {
+            this.reader = reader;
+        }
+
         public string GetLevelStr(string subject)
         {
             if (Tutor.Subjects == null || !Tutor.Subjects.ContainsKey(subject)) { return ""; }
@@ -72,7 +79,7 @@ namespace Korki.Pages
             }
             else
             {
-                Tutor = TutorAccess.GetTutor(TID).Map();
+                Tutor = ModelMapper.MapTutor(reader.GetTutor(TID));
             }
             
         }

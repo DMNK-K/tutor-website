@@ -34,11 +34,21 @@ namespace KorkiDataAccessLib.Utility
             dbo.City.CityName Name,
             dbo.City.VoivodeshipAlphaIndex VoivodeshipAlphaIndex,
             dbo.City.Powiat Powiat,
-            dbo.City.Gmina Gmina
+            dbo.City.Gmina Gmina,
             dbo.City.Lat Lat,
-            dbo.City.Long Long,
+            dbo.City.Long Long
             ";
 
+        public static string TutorCitySplitOn => "CID";
+
+        public static string GetAllWorkingTutors =>
+            $@"SELECT {TutorAndCity}
+
+            FROM dbo.Tutor
+            INNER JOIN dbo.City
+            ON dbo.Tutor.CityID = dbo.City.ID
+
+            WHERE Operational = 1;";
 
         public static string TutorSearchSimple =>
             @$"SELECT {TutorAndCity}
@@ -67,5 +77,51 @@ namespace KorkiDataAccessLib.Utility
 	        WHERE
 	        Operational = 1 AND
 	        CityName LIKE CONCAT(@City, '%');";
+
+        public static string TutorSearchAdv =>
+            $@"SELECT {TutorAndCity}
+             
+            FROM dbo.Tutor
+            INNER JOIN dbo.City
+            ON dbo.Tutor.CityID = dbo.City.ID
+
+            WHERE
+	        Operational = 1 AND
+	        (
+		        (RatingCount < @MinRatingCount AND @SkipNonRated = 0) OR
+		        (RatingCount >= @MinRatingCount AND (RatingSum / RatingCount) >= @MinRating)
+	        ) AND
+	        (
+		        (@TutoringPlace = 0) OR
+		        (@TutoringPlace = 1 AND GoesToClient = 1) OR
+		        (@TutoringPlace = 2 AND GoesToClient = 0)
+	        ) AND
+	        CityName LIKE CONCAT(@city, '%') AND
+	        (
+		        (UsesFormalName = 1 AND NameFormal LIKE CONCAT('%', @NameStr, '%')) OR
+		        NameFirst = @NameFirst OR
+		        NameLast LIKE CONCAT('%', @NameLast, '%') OR
+		        SubjectsStr LIKE CONCAT('%', @NameStr, '%')
+	        );";
+
+        public static string TutorSearchAdvNoNameStr =>
+            $@"SELECT {TutorAndCity}
+             
+            FROM dbo.Tutor
+            INNER JOIN dbo.City
+            ON dbo.Tutor.CityID = dbo.City.ID
+
+            WHERE
+	        Operational = 1 AND
+	        (
+		        (RatingCount < @MinRatingCount AND @SkipNonRated = 0) OR
+		        (RatingCount >= @MinRatingCount AND (RatingSum / RatingCount) >= @MinRating)
+	        ) AND
+	        (
+		        (@TutoringPlace = 0) OR
+		        (@TutoringPlace = 1 AND GoesToClient = 1) OR
+		        (@TutoringPlace = 2 AND GoesToClient = 0)
+	        ) AND
+	        CityName LIKE CONCAT(@city, '%');";
     }
 }

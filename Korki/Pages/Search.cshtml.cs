@@ -37,14 +37,25 @@ namespace Korki.Pages
 
         public TutoringPlace Place { get; private set; }
 
-        public List<Tutor> Results { get; set; } = new List<Tutor>();
+        public List<Tutor> Results { get; private set; }
 
         public int PageIndex { get; set; } = 0;
         public static int MaxResultsPerPage { get; } = 40;
 
+        private readonly ITutorReader reader;
+
+        public SearchModel(ITutorReader reader)
+        {
+            this.reader = reader;
+        }
+
         public void OnGet()
         {
             BasicTerms.Validate();
+            //this seems like a hack, but achieves what i'm after - without calling ModelStateClear();
+            //the results of calling BasicTerms.Validate() didn't appear on the newly constructed form,
+            //with ModelState.Clear() the form is repopulated with the validated values
+            ModelState.Clear(); 
 
             if (MaxPrice < 0) { MaxPrice = 0; }
             MinRating = Math.Clamp(MinRating, 0, 5);
@@ -59,9 +70,11 @@ namespace Korki.Pages
                 Place = TutoringPlace.Any;
             }
 
-            TutorFiltersBasic filter = BasicTerms.Map();
-            TutorFiltersAdv advFilter = new TutorFiltersAdv(MinRating, MaxPrice, SkipNonRated, (int)Place);
-            //Results = TutorAccess.GetTutorsFiltered(filter, advFilter).Map();
+            TutorFilters filter = BasicTerms.Map(MinRating, SkipNonRated, MaxPrice, (int)Place);
+            List<KorkiDataAccessLib.Models.Tutor> unmappedResults = reader.GetAllWorkingTutors();
+            //Results = reader.GetTutorsFiltered(filter).Map();
+            Results = ModelMapper.MapTutors(unmappedResults);
+
         }
     }
 }

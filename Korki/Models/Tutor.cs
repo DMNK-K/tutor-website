@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KorkiDataAccessLib.Models;
 
 namespace Korki.Models
 {
     public class Tutor
     {
-        public static int MinRatingCount { get; } = 3;
 
         public int TID { get; set; } = -1;
         public string NameFirst { get; private set; }
@@ -30,6 +30,7 @@ namespace Korki.Models
 
         public int RatingSum { get; set; } = 0;
         public int RatingCount { get; set; } = 0;
+        public static int MinRatingCount => Models.Tutor.MinRatingCount;
         public float RatingAvg => (RatingCount == 0) ? 0 : RatingSum * 1f / RatingCount;
         public string RatingAvgStr => (RatingCount == 0) ? "" : (RatingSum / RatingCount).ToString("F1");
 

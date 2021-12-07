@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,8 @@ namespace Korki.Models
 {
     public class BasicSearchTerms
     {
-        public string Name { get; set; }
-        public string City { get; set; }
+        public string Name { get; set; } = "";
+        public string City { get; set; } = "";
         private string defaultCity = "Warszawa";
 
         public string LevelStr { get; set; }
@@ -23,7 +24,7 @@ namespace Korki.Models
             new SelectListItem("Szkoła wyższa", ((int)TeachingLevel.HigherEdu).ToString()),
         };
 
-        public TeachingLevel Level { get; private set; }
+        public TeachingLevel Level { get; private set; } = TeachingLevel.OneToThree;
 
         public void Validate()
         {

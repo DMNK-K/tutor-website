@@ -10,51 +10,52 @@ using KorkiDataAccessLib.Utility;
 
 namespace KorkiDataAccessLib.Access
 {
-    public static class TutorAccess
+    public class TutorReader : ITutorReader
     {
-        public static List<Tutor> GetAllWorkingTutors()
+        private readonly ISQLAccess _access;
+
+        public TutorReader(ISQLAccess access)
         {
-            using (IDbConnection conn = new SqlConnection(SQLAccess.KorkiConnectionStr))
-            {
-                return new List<Tutor>(conn.Query<Tutor>("EXEC spGetAllWorkingTutors"));
-            }
+            _access = access;
         }
 
-        public static List<Tutor> GetTutorsFiltered(TutorFiltersBasic filter)
+        public List<Tutor> GetAllWorkingTutors()
+        {
+            List<Tutor> res;
+            using (IDbConnection conn = _access.GetConnection())
+            {
+                //return new List<Tutor>(conn.Query<Tutor>("EXEC spGetAllWorkingTutors"));
+                res = conn.Query<Tutor, City, Tutor>(DapperQueries.GetAllWorkingTutors, (t, c) => { t.City = c; return t; }, splitOn: DapperQueries.TutorCitySplitOn).ToList();
+            }
+            return res;
+        }
+
+        public List<Tutor> GetTutorsFiltered(TutorFilters filter)
         {
             //some filtering for basic search happens in SQL, some via LINQ, to prefilter and reduce
             //amount of results in the reseult set
             //it ould be nice to use a stored procedure, but dapper needs to map retrieved values
             //to properties correctly, and to do that i need to specify some things inside the app
-
-            List<Tutor> res;
-            using (IDbConnection conn = new SqlConnection(SQLAccess.KorkiConnectionStr))
+            List<Tutor> res = new List<Tutor>();
+            using (IDbConnection conn = _access.GetConnection())
             {
-                string sql;
-                if (string.IsNullOrWhiteSpace(filter.NameStr))
-                {
-                    sql = DapperQueries.TutorSearchSimple;
-                }
-                else
-                {
-                    sql = DapperQueries.TutorSearchSimpleNoNameStr;
-                }
-                res = conn.Query<Tutor, City, Tutor>(sql, (t, c) => { t.City = c; return t; }, filter).ToList();
+                string sql = GetSQLForTutorFilter(filter.IsAdvanced, filter.NameStr);
+                res = conn.Query<Tutor, City, Tutor>(sql, (t, c) => { t.City = c; return t; }, filter, splitOn: DapperQueries.TutorCitySplitOn).ToList();
             }
             FilterTutorsByLvl(res, filter);
             return res;
         }
 
-        public static List<Tutor> GetTutorsFiltered(TutorFiltersBasic filter, TutorFiltersAdv advFilter)
+        private string GetSQLForTutorFilter(bool isAdvanced, string nameStr)
         {
-            List<Tutor> res = new List<Tutor>();
-            using (IDbConnection conn = new SqlConnection(SQLAccess.KorkiConnectionStr))
+            if (string.IsNullOrWhiteSpace(nameStr))
             {
-                string sql;
-
+                return (isAdvanced) ? DapperQueries.TutorSearchAdvNoNameStr : DapperQueries.TutorSearchSimpleNoNameStr;
             }
-            FilterTutorsByLvl(res, filter);
-            return res;
+            else
+            {
+                return (isAdvanced) ? DapperQueries.TutorSearchAdv : DapperQueries.TutorSearchSimple;
+            }
         }
 
         /// <summary>
@@ -62,9 +63,9 @@ namespace KorkiDataAccessLib.Access
         /// the filter.NameStr is found among tought subjects, also eliminates a Tutor if that one subject
         /// is not thought at the specified level.
         /// </summary>
-        public static void FilterTutorsByLvl(List<Tutor> list, TutorFiltersBasic filter)
+        public void FilterTutorsByLvl(List<Tutor> list, TutorFilters filter)
         {
-            for (int i = list.Count; i >= 0; i--)
+            for (int i = list.Count - 1; i >= 0; i--)
             {
                 string nameStrLower = filter.NameStr.ToLower();
                 if (list[i].TeachesSubject(nameStrLower))
@@ -81,10 +82,10 @@ namespace KorkiDataAccessLib.Access
             }
         }
 
-        public static Tutor GetTutor(int id)
+        public Tutor GetTutor(int id)
         {
             Tutor t;
-            using (IDbConnection conn = new SqlConnection(SQLAccess.KorkiConnectionStr))
+            using (IDbConnection conn = _access.GetConnection())
             {
                 var paramsT = new { ID = id };
                 string sql = "SELECT * FROM dbo.Tutor WHERE ID = @ID";
@@ -98,14 +99,5 @@ namespace KorkiDataAccessLib.Access
             }
             return t;
         }
-
-        //public static void CreateTutor(Tutor tutor)
-        //{
-        //    using (IDbConnection conn = new SqlConnection(SQLAccess.KorkiConnectionStr))
-        //    {
-        //        string sql = "";
-        //        conn.Execute();
-        //    }
-        //}
     }
 }
