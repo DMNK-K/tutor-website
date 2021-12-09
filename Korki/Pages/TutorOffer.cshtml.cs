@@ -16,7 +16,7 @@ namespace Korki.Pages
         public int TID { get; set; }
 
         public Tutor Tutor { get; set; }
-        public TutorTimetable Timetable { get; set; }
+        public TutorTimetable Timetable { get; set; } = new TutorTimetable();
 
         private readonly ITutorReader reader;
 
@@ -72,16 +72,8 @@ namespace Korki.Pages
 
         public void OnGet()
         {
-            if (TID == -1)
-            {
-                Tutor = Tutor.GetSampleTutor();
-                Timetable = TutorTimetable.GetSampleTimetable();
-            }
-            else
-            {
-                Tutor = ModelMapper.MapTutor(reader.GetTutor(TID));
-            }
-            
+            Tutor = ModelMapper.MapTutor(reader.GetTutor(TID));
+            Timetable = TutorTimetable.GetSampleTimetable();
         }
     }
 }
