@@ -19,28 +19,28 @@ namespace KorkiDataAccessLib.Access
             _access = access;
         }
 
-        public List<Tutor> GetAllWorkingTutors()
+        public List<TutorData> GetAllWorkingTutors()
         {
-            List<Tutor> res;
+            List<TutorData> res;
             using (IDbConnection conn = _access.GetConnection())
             {
                 //return new List<Tutor>(conn.Query<Tutor>("EXEC spGetAllWorkingTutors"));
-                res = conn.Query<Tutor, City, Tutor>(DapperQueries.GetAllWorkingTutors, (t, c) => { t.City = c; return t; }, splitOn: DapperQueries.TutorCitySplitOn).ToList();
+                res = conn.Query<TutorData, CityData, TutorData>(DapperQueries.GetAllWorkingTutors, (t, c) => { t.City = c; return t; }, splitOn: DapperQueries.TutorCitySplitOn).ToList();
             }
             return res;
         }
 
-        public List<Tutor> GetTutorsFiltered(TutorFilters filter)
+        public List<TutorData> GetTutorsFiltered(TutorFilters filter)
         {
             //some filtering for basic search happens in SQL, some via LINQ, to prefilter and reduce
             //amount of results in the reseult set
             //it ould be nice to use a stored procedure, but dapper needs to map retrieved values
             //to properties correctly, and to do that i need to specify some things inside the app
-            List<Tutor> res = new List<Tutor>();
+            List<TutorData> res = new List<TutorData>();
             using (IDbConnection conn = _access.GetConnection())
             {
                 string sql = GetSQLForTutorFilter(filter.IsAdvanced, filter.NameStr);
-                res = conn.Query<Tutor, City, Tutor>(sql, (t, c) => { t.City = c; return t; }, filter, splitOn: DapperQueries.TutorCitySplitOn).ToList();
+                res = conn.Query<TutorData, CityData, TutorData>(sql, (t, c) => { t.City = c; return t; }, filter, splitOn: DapperQueries.TutorCitySplitOn).ToList();
             }
             FilterTutorsByLvl(res, filter);
             return res;
@@ -63,7 +63,7 @@ namespace KorkiDataAccessLib.Access
         /// the filter.NameStr is found among tought subjects, also eliminates a Tutor if that one subject
         /// is not thought at the specified level.
         /// </summary>
-        public void FilterTutorsByLvl(List<Tutor> list, TutorFilters filter)
+        public void FilterTutorsByLvl(List<TutorData> list, TutorFilters filter)
         {
             for (int i = list.Count - 1; i >= 0; i--)
             {
@@ -82,18 +82,18 @@ namespace KorkiDataAccessLib.Access
             }
         }
 
-        public Tutor GetTutor(int id)
+        public TutorData GetTutor(int id)
         {
-            Tutor t;
+            TutorData t;
             using (IDbConnection conn = _access.GetConnection())
             {
                 var paramsT = new { ID = id };
                 string sql = "SELECT * FROM dbo.Tutor WHERE ID = @ID";
-                t = conn.QueryFirst<Tutor>(sql, paramsT);
+                t = conn.QueryFirst<TutorData>(sql, paramsT);
 
                 sql = "SELECT * FROM dbo.City WHERE ID = @CityID";
                 var paramsC = new { CityID = t.CityID };
-                City c = conn.QueryFirst<City>(sql, paramsC);
+                CityData c = conn.QueryFirst<CityData>(sql, paramsC);
 
                 t.City = c;
             }

@@ -17,10 +17,10 @@ namespace KorkiDataAccessLib.Models
 
         //advanced filters
         public int MinRating { get; } = 0;
-        public int MaxPrice { get; } = int.MaxValue;
+        public bool RequirePriceInfo { get; } = false;
         public bool SkipNonRated { get; } = false;
         public int TutoringPlace { get; } = 0;
-        public int MinRatingCount => Tutor.MinRatingCount;
+        public int MinRatingCount => TutorData.MinRatingCount;
 
         public static string DefaultCity => "Warszawa";
 
@@ -48,14 +48,14 @@ namespace KorkiDataAccessLib.Models
             SkipNonRated = skip;
         }
 
-        public TutorFilters(string nameStr, string city, int lvl, int minRating, bool skip, int maxPrice, int tutoringPlace = 0)
+        public TutorFilters(string nameStr, string city, int lvl, int minRating, bool skip, bool requirePriceInfo, int tutoringPlace = 0)
         {
             IsAdvanced = true;
             SetBasicFilters(nameStr, city, lvl);
 
             MinRating = Math.Clamp(minRating, 0, 5);
             SkipNonRated = skip;
-            MaxPrice = maxPrice;
+            RequirePriceInfo = requirePriceInfo;
             TutoringPlace = tutoringPlace;
         }
 

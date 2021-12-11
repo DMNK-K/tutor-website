@@ -32,8 +32,8 @@
                 <select class="input_select" name="PlaceStr" asp-for="PlaceStr" asp-items="Model.PickablePlaces" id="input_service_loc"></select>
             </div>
             <div class="label_and_input_box search_narrow">
-                <label for="input_max_price">Maks. cena:</label>
-                <input class="input_number browser_width_override" type="number" id="input_max_price" asp-for="MaxPrice"/>
+                <label for="input_max_price">Posiada informacje o cenie:</label>
+                <input class="input_number browser_width_override" type="checkbox" id="input_max_price" asp-for="RequirePriceInfo"/>
             </div>
         </div>
     </form>
@@ -87,6 +87,6 @@
     }
 
 </div>
-<button class="go_to_top_button">
+@*<button class="go_to_top_button">
     Wróc na górę
-</button>
+</button>*@

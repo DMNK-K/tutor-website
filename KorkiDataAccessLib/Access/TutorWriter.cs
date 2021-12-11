@@ -7,7 +7,7 @@ namespace KorkiDataAccessLib.Access
 {
     public static class TutorWriter
     {
-        public static void CreateTutor(Tutor tutor)
+        public static void CreateTutor(TutorData tutor)
         {
 
         }
@@ -21,12 +21,12 @@ namespace KorkiDataAccessLib.Access
         /// Applies user-editable values of tutor, such as description, bonus info,
         /// subjects tought, to the database.
         /// </summary>
-        public static void EditTutor(Tutor tutor)
+        public static void EditTutor(TutorData tutor)
         {
 
         }
 
-        public static void RateTutor(Tutor tutor)
+        public static void RateTutor(TutorData tutor)
         {
 
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KorkiDataAccessLib.Models
 {
-    public class Tutor
+    public class TutorData
     {
         public int ID { get; set; }
         public int UserID { get; set; }
@@ -22,7 +22,7 @@ namespace KorkiDataAccessLib.Models
         public static int MinRatingCount { get; } = 3;
 
         public int CityID { get; set; }
-        public City City { get; set; }
+        public CityData City { get; set; }
         public string InfoPrice { get; set; }
         public string InfoBonus { get; set; }
 

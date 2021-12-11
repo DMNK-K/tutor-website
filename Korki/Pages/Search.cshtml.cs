@@ -22,7 +22,7 @@ namespace Korki.Pages
         [BindProperty(SupportsGet = true)]
         public int MinRating { get; set; }
         [BindProperty(SupportsGet = true)]
-        public int MaxPrice { get; set; }
+        public bool RequirePriceInfo { get; set; }
         [BindProperty(SupportsGet = true)]
         public bool SkipNonRated { get; set; }
         [BindProperty(SupportsGet = true)]
@@ -58,7 +58,7 @@ namespace Korki.Pages
             ModelState.Clear();
             ValidateAdvancedTerms();
 
-            TutorFilters filter = BasicTerms.Map(MinRating, SkipNonRated, MaxPrice, (int)Place);
+            TutorFilters filter = BasicTerms.Map(MinRating, SkipNonRated, RequirePriceInfo, (int)Place);
 
             // this stuff is from when i was trying to fix an access violation error 
             // that was elusive, seemed to happen right after OnExit finished its job
@@ -80,7 +80,6 @@ namespace Korki.Pages
 
         private void ValidateAdvancedTerms()
         {
-            if (MaxPrice < 0) { MaxPrice = 0; }
             MinRating = Math.Clamp(MinRating, 0, 5);
 
             int placeInt;

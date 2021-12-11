@@ -87,6 +87,10 @@ namespace KorkiDataAccessLib.Utility
 
             WHERE
 	        Operational = 1 AND
+            (
+		        @RequirePriceInfo = 0 OR
+		        (InfoPrice IS NOT NULL AND InfoPrice != '')
+	        ) AND
 	        (
 		        (RatingCount < @MinRatingCount AND @SkipNonRated = 0) OR
 		        (RatingCount >= @MinRatingCount AND (RatingSum / RatingCount) >= @MinRating)
@@ -113,6 +117,10 @@ namespace KorkiDataAccessLib.Utility
 
             WHERE
 	        Operational = 1 AND
+            (
+		        @RequirePriceInfo = 0 OR
+		        (InfoPrice IS NOT NULL AND InfoPrice != '')
+	        ) AND
 	        (
 		        (RatingCount < @MinRatingCount AND @SkipNonRated = 0) OR
 		        (RatingCount >= @MinRatingCount AND (RatingSum / RatingCount) >= @MinRating)

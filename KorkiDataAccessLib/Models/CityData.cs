@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KorkiDataAccessLib.Models
 {
-    public class City
+    public class CityData
     {
         public int CityID { get; set; }
         public string Name { get; set; }

@@ -6,7 +6,8 @@
 	@minRating int,
 	@skipNonRated bit,
 	@minRatingCount int,
-	@tutoringPlace int
+	@tutoringPlace int,
+	@requirePriceInfo bit
 AS
 BEGIN
 	SELECT [dbo].[Tutor].[ID], [dbo].[Tutor].[UserID], [dbo].[Tutor].[NameFirst], [dbo].[Tutor].[NameLast], [dbo].[Tutor].[NameFormal], [dbo].[Tutor].[UsesFormalName], [dbo].[Tutor].[GoesToClient], [dbo].[Tutor].[Description], [dbo].[Tutor].[RatingCount], [dbo].[Tutor].[RatingSum], [dbo].[Tutor].[InfoPrice], [dbo].[Tutor].[InfoBonus], [dbo].[Tutor].[CityID], [dbo].[Tutor].[ServiceRange], [dbo].[Tutor].[Timetable], [dbo].[Tutor].[Operational], [dbo].[Tutor].[SubjectsStr], [dbo].[City].[ID], [dbo].[City].[CityName], [dbo].[City].[VoivodeshipAlphaIndex], [dbo].[City].[Powiat], [dbo].[City].[Gmina]
@@ -18,6 +19,10 @@ BEGIN
 	--which can't be done through Visual Studio
 	WHERE
 	Operational = 1 AND
+	(
+		@requirePriceInfo = 0 OR
+		(InfoPrice IS NOT NULL AND InfoPrice != '')
+	) AND
 	(
 		(RatingCount < @minRatingCount AND @skipNonRated = 0) OR
 		(RatingCount >= @minRatingCount AND (RatingSum / RatingCount) >= @minRating)
