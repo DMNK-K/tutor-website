@@ -6,7 +6,7 @@
     [EmailHash] BINARY(32) NOT NULL,
     [EmailConfirmed] BIT NOT NULL DEFAULT 0, 
     [Username] NVARCHAR(50) NOT NULL, 
-    [PasswordHash] CHAR(64) NOT NULL, 
+    [PasswordHash] CHAR(128) NOT NULL, 
     [JoinDateTime] DATETIMEOFFSET(3) NOT NULL, 
     [IsDeleted] BIT NOT NULL DEFAULT 0, 
     [DeletionInfo] NVARCHAR(50) NULL, 

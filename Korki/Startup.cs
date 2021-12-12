@@ -39,6 +39,8 @@ namespace Korki
 
             services.AddSingleton<ISQLAccess, SQLAccess>();
             services.AddSingleton<ITutorReader, TutorReader>();
+            services.AddSingleton<IUserWriter, UserWriter>();
+            services.AddSingleton<IUserReader, UserReader>();
 
             //default identity setup
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)

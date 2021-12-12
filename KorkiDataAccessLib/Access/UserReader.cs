@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Text;
 using Dapper;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace KorkiDataAccessLib.Access
 {
-    public class UserReader
+    public class UserReader : IUserReader
     {
         private readonly ISQLAccess _access;
 
@@ -16,23 +17,31 @@ namespace KorkiDataAccessLib.Access
             _access = access;
         }
 
-        public UserData GetUser(int id)
+        public async Task<UserData> GetUser(int id)
         {
             using (IDbConnection conn = _access.GetConnection())
             {
                 string sql = "SELECT * FROM dbo.User WHERE ID = @ID";
-                return conn.QueryFirst<UserData>(sql, new { ID = id });
+                return await conn.QueryFirstOrDefaultAsync<UserData>(sql, new { ID = id });
             }
         }
 
-        public UserData GetUserByEmail(string email)
+        public async Task<UserData> GetUserByEmail(string email)
         {
-            throw new NotImplementedException();
+            using (IDbConnection conn = _access.GetConnection())
+            {
+                string sql = "SELECT * FROM dbo.User WHERE Email = @Email";
+                return await conn.QueryFirstOrDefaultAsync<UserData>(sql, new { Email = email });
+            }
         }
 
-        public UserData GetUserByUsername(string username)
+        public async Task<UserData> GetUserByUsername(string username)
         {
-            throw new NotImplementedException();
+            using (IDbConnection conn = _access.GetConnection())
+            {
+                string sql = "SELECT * FROM dbo.User WHERE Username = @Username";
+                return await conn.QueryFirstOrDefaultAsync<UserData>(sql, new { Username = username });
+            }
         }
     }
 }
