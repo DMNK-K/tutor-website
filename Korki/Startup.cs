@@ -16,6 +16,10 @@ using KorkiDataAccessLib.Access;
 using Korki.Areas.Identity.Utility;
 using Korki.Models;
 using Korki.Areas.Identity.Stores;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Korki
 {
@@ -50,12 +54,44 @@ namespace Korki
             //my own identity setup
             services.AddIdentityCore<User>()
                 .AddUserStore<KorkiUserStore>()
+                .AddSignInManager<SignInManager<User>>()
+                .AddPasswordValidator<BonusPasswordValidator<User>>()
                 .AddDefaultTokenProviders();
+
+
+            services.AddAuthentication(options => {
+                options.DefaultAuthenticateScheme = IdentityConstants.ApplicationScheme;
+                options.DefaultChallengeScheme = IdentityConstants.ApplicationScheme;
+                options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+            })
+                .AddCookie(IdentityConstants.ApplicationScheme, o =>
+                    {
+                        o.LoginPath = new PathString("/Account/Login");
+                        o.Events = new CookieAuthenticationEvents()
+                        {
+                            OnValidatePrincipal = SecurityStampValidator.ValidatePrincipalAsync
+                        };
+                    })
+                .AddCookie(IdentityConstants.ExternalScheme, o =>
+                    {
+                        o.Cookie.Name = IdentityConstants.ExternalScheme;
+                        o.ExpireTimeSpan = TimeSpan.FromMinutes(5.0);
+                    })
+                .AddCookie(IdentityConstants.TwoFactorRememberMeScheme,
+                    o => o.Cookie.Name = IdentityConstants.TwoFactorRememberMeScheme)
+                .AddCookie(IdentityConstants.TwoFactorUserIdScheme,
+                    o =>
+                    {
+                        o.Cookie.Name = IdentityConstants.TwoFactorUserIdScheme;
+                        o.ExpireTimeSpan = TimeSpan.FromMinutes(5.0);
+                    }
+            );
+            services.AddScoped<ISecurityStampValidator, SecurityStampValidator<User>>();
+            services.AddTransient<IEmailSender, KorkiEmailSender>();
+            services.AddScoped<IdentityErrorDescriber, IdentityErrorDescriberPL>();
 
             services.AddRazorPages();
             
-            services.AddScoped<IdentityErrorDescriber, IdentityErrorDescriberPL>();
-
             services.Configure<IdentityOptions>(options => {
                 options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 8;

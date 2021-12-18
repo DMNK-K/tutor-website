@@ -72,6 +72,7 @@
     <Build Include="dbo\StoredProcedures\spUserDelete.sql" />
     <Build Include="dbo\StoredProcedures\spUserCreate.sql" />
     <Build Include="dbo\StoredProcedures\spUserTutorCreate.sql" />
+    <Build Include="dbo\StoredProcedures\spUserUpdate.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="KorkiDB.refactorlog" />

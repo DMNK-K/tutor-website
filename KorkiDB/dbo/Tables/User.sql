@@ -3,7 +3,7 @@
 	[ID] INT NOT NULL PRIMARY KEY IDENTITY, 
     [IsTutor] BIT NOT NULL, 
     [Email] NVARCHAR(100) NOT NULL,
-    [EmailHash] BINARY(32) NOT NULL,
+    [EmailHash] CHAR(128) NOT NULL,
     [EmailConfirmed] BIT NOT NULL DEFAULT 0, 
     [Username] NVARCHAR(50) NOT NULL, 
     [PasswordHash] CHAR(128) NOT NULL, 

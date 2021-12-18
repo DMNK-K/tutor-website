@@ -1,8 +1,8 @@
 ﻿@page
 @using Korki.Models;
 @using Korki.Data;
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 @model Korki.Pages.TutorOfferModel
 @{
     ViewData["Title"] = "Oferta: " + Model.Tutor.DisplayName;
