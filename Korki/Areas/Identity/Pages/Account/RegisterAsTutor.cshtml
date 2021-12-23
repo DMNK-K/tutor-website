@@ -1,14 +1,14 @@
 ﻿@page
-@model RegisterModel
+@model RegisterAsTutorModel
 @{
-    ViewData["Title"] = "Rejestracja użytkownika";
+    ViewData["Title"] = "Rejestracja korepetytora";
 }
 @section Styles{
     <link rel="stylesheet" href="~/css/standard_form.css" />
 }
-<div class="st_form_wrapper_1col">
+<div class="st_form_wrapper_2col">
     <form class="st_form" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-        <p class="st_form_title">Zarejestruj się</p>
+        <p class="st_form_title">Zarejestruj się jako korepetytor</p>
         <div class="st_form_box">
             <label asp-for="Input.Username"></label>
             <input class="st_form_text_input" asp-for="Input.Username" />
@@ -24,12 +24,34 @@
             <input class="st_form_text_input" asp-for="Input.Password" />
             <span class="st_form_notice" asp-validation-for="Input.Password"></span>
         </div>
-        <div class="st_form_box st_form_spacer">
+        <div class="st_form_box">
             <label asp-for="Input.ConfirmPassword"></label>
             <input class="st_form_text_input" asp-for="Input.ConfirmPassword" />
             <span class="st_form_notice" asp-validation-for="Input.ConfirmPassword"></span>
         </div>
-        <div class="st_form_box_longlabel">
+
+        <div class="st_form_box">
+            <label asp-for="Input.FirstName"></label>
+            <input class="st_form_text_input" asp-for="Input.FirstName" />
+            <span class="st_form_notice" asp-validation-for="Input.FirstName"></span>
+        </div>
+        <div class="st_form_box">
+            <label asp-for="Input.LastName"></label>
+            <input class="st_form_text_input" asp-for="Input.LastName" />
+            <span class="st_form_notice" asp-validation-for="Input.LastName"></span>
+        </div>
+        <div class="st_form_box">
+            <label asp-for="Input.FormalName"></label>
+            <input class="st_form_text_input" asp-for="Input.FormalName" />
+            <span class="st_form_notice" asp-validation-for="Input.FormalName"></span>
+        </div>
+        <div class="st_form_box st_form_spacer">
+            <label asp-for="Input.CityString"></label>
+            <input class="st_form_text_input" asp-for="Input.CityString" />
+            <span class="st_form_notice" asp-validation-for="Input.CityString"></span>
+        </div>
+
+        <div class="st_form_box_longlabel st_form_spacer">
             <input class="st_form_checkbox" asp-for="Input.AgreeTerms" />
             <label asp-for="Input.AgreeTerms"></label>
             <span class="st_form_notice" asp-validation-for="Input.AgreeTerms"></span>
@@ -40,7 +62,7 @@
             <span class="st_form_notice" asp-validation-for="Input.AgreePrivacy"></span>
         </div>
         <div class="st_form_summary" asp-validation-summary="All"></div>
-        <button type="submit">Utwórz konto</button>
+        <button type="submit">Utwórz konto korepetytora</button>
     </form>
 </div>
 

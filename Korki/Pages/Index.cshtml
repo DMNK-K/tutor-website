@@ -35,15 +35,15 @@
             {
                 <div class="hero_invitation_box">
                     <h5>Potrzebujesz korepetycji? Załóż konto użytkownika i przeglądaj profile korepetytorów.</h5>
-                    <a>Zarejestruj</a>
+                    <a asp-area="Identity" asp-page="/Account/Register">Zarejestruj</a>
                 </div>
                 <div class="hero_invitation_box">
                     <h5>Jesteś korepetytorem? Załóż konto dla korepetytorów i zacznij oferowac swoje usługi.</h5>
-                    <a>Zarejestruj jako korepetytor</a>
+                    <a asp-area="Identity" asp-page="/Account/RegisterAsTutor">Zarejestruj jako korepetytor</a>
                 </div>
                 <div class="hero_invitation_box">
                     <h5>Masz już konto? Zaloguj się tutaj:</h5>
-                    <a>Zaloguj</a>
+                    <a asp-area="Identity" asp-page="/Account/Login">Zaloguj</a>
                 </div>
             }
         </div>

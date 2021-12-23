@@ -49,6 +49,7 @@ namespace Korki.ExtAndUtility
 
         public static Tutor MapTutor(TutorData source)
         {
+            if (source == null) { return null; }
             Tutor result = new Models.Tutor(source.NameFirst, source.NameLast, source.NameFormal, source.UsesFormalName)
             {
                 TID = source.ID,

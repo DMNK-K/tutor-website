@@ -1,0 +1,161 @@
+﻿/* standard form stuff (it's set up, so elements within have different styling
+   depending on which wrapper you use)
+*/
+.st_form_wrapper_1col{
+    width:37%;
+    margin-left:31.5%;
+    margin-top:60px;
+}
+
+.st_form_wrapper_2col {
+    width: 72%;
+    margin-left: 14%;
+    margin-top: 60px;
+}
+
+.st_form {
+    width: 100%;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+
+    padding:28px;
+    border-radius:24px;
+
+    box-shadow: var(--color-shadow-dark) 8px 8px 16px, var(--color-shadow-bright) -8px -8px 16px;
+}
+
+.st_form_title{
+    width:100%;
+    font-size:26px;
+    font-weight:bold;
+    text-align:center;
+    margin-bottom:26px;
+}
+
+.st_form_box, .st_form_box_longlabel{
+    margin-bottom:10px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+
+.st_form_box_longlabel{
+    align-items:center;
+    min-height:40px;
+}
+
+.st_form_spacer{
+    margin-bottom:50px;
+}
+
+.st_form_wrapper_1col .st_form_box, .st_form_wrapper_1col .st_form_box_longlabel {
+    width: 100%;
+}
+
+.st_form_wrapper_2col .st_form_box, .st_form_wrapper_2col .st_form_box_longlabel {
+    width: 49%;
+}
+
+.st_form button {
+    background-color:var(--color-accent-b);
+    height: 54px;
+    border:none;
+    border-radius:12px;
+    box-shadow:var(--color-shadow-dark) 6px 6px 10px, var(--color-shadow-bright) -6px -6px 10px;
+}
+
+.st_form_wrapper_1col button{
+    width:50%;
+}
+
+.st_form_wrapper_2col button {
+    width:24.5%;
+}
+
+.st_form_notice{
+    display:block;
+    width:100%;
+    text-align:right;
+    font-size:14px;
+}
+
+.st_form_desc{
+    margin:0;
+    text-align:center;
+    width:100%;
+}
+
+.st_form_info{
+
+}
+
+.st_form_summary{
+    width:100%;
+}
+
+/*======== inputs ==========*/
+.st_form input, .st_form select {
+    border:none;
+    border-radius:10px;
+    background-color:var(--color-bcg-default);
+}
+
+.st_form input{
+    box-shadow: inset var(--color-shadow-dark) 2px 2px 6px, inset var(--color-shadow-bright) -3px -3px 6px;
+}
+
+.st_form select{
+
+}
+
+.st_form_text_input {
+    padding: 0 1.5%;
+}
+
+.st_form_checkbox{
+    margin-left:2%;
+    width:32px;
+    cursor:pointer;
+    appearance:none;
+    padding:0;
+    position:relative;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+}
+
+.st_form_checkbox:checked:after{
+    content:"";
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    width:45%;
+    height:45%;
+    border-radius:25%;
+    background-color:var(--color-accent-b);
+
+    box-shadow: var(--color-shadow-dark) 1px 1px 4px, var(--color-shadow-bright) -1px -1px 4px;
+}
+
+.st_form_box input, .st_form_box select {
+    width: 68%;
+    height: 40px;
+}
+
+.st_form_box_longlabel input, .st_form_box_longlabel select{
+    max-width:8%;
+    height:32px;
+}
+
+/*======== labels ==========*/
+.st_form_box label{
+    width:30%;
+    text-align:right;
+    line-height:40px;
+}
+
+.st_form_box_longlabel label{
+    width:89%;
+    text-align:justify;
+}

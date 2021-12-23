@@ -89,15 +89,16 @@ namespace KorkiDataAccessLib.Access
             {
                 var paramsT = new { ID = id };
                 string sql = "SELECT * FROM dbo.Tutor WHERE ID = @ID";
-                t = conn.QueryFirst<TutorData>(sql, paramsT);
+                t = conn.QueryFirstOrDefault<TutorData>(sql, paramsT);
+                if (t == null) { return null; }
 
                 sql = "SELECT * FROM dbo.City WHERE ID = @CityID";
                 var paramsC = new { CityID = t.CityID };
-                CityData c = conn.QueryFirst<CityData>(sql, paramsC);
+                CityData c = conn.QueryFirstOrDefault<CityData>(sql, paramsC);
 
                 t.City = c;
             }
-            return t;
+            return (t.City != null) ? t : null;
         }
     }
 }

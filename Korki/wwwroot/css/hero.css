@@ -90,8 +90,10 @@
     width: 20%;
     font-family: "Segoe UI", "Roboto", "Segoe UI Emoji", "Arial";
     font-size: 16px;
+    padding:0 8px;
 }
 
-.hero_input_submit{
-
+.hero_input_submit {
+    width: 15%;
+    font-size: 16px;
 }

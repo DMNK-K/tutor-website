@@ -5,7 +5,7 @@
 @inject UserManager<User> UserManager
 @model Korki.Pages.TutorOfferModel
 @{
-    ViewData["Title"] = "Oferta: " + Model.Tutor.DisplayName;
+    ViewData["Title"] = "Oferta: " + ((Model.Tutor != null) ? Model.Tutor.DisplayName : "nie znaleziono");
 }
 @section Styles{
     <link rel="stylesheet" href="~/css/tutor_offer.css" />
@@ -25,7 +25,7 @@
             <div class="tutor_info_box">
                 <div class="tutor_info_box_row">
                     <span>Udziela korepetycji w:</span>
-                    <span>@Model.Tutor.CityName @((Model.Tutor.ProvidesNearCity) ? "i okolice (+" + Model.Tutor.RangeIncrement + ")"  : "")</span>
+                    <span>@Model.Tutor.CityName @((Model.Tutor.ProvidesNearCity) ? "i okolice (+" + Model.Tutor.RangeIncrement + "km)"  : "")</span>
                 </div>
                 <p>Przedmioty:</p>
                 <ul class="offer_subject_list">
@@ -64,21 +64,23 @@
             </table>
         </div>
         <div class="full_flex_row">
-            <h4>Oceny:</h4>
-            <div class="rating_widget">
-                <button class="rating_button"></button>
-                <button class="rating_button"></button>
-                <button class="rating_button"></button>
-                <button class="rating_button"></button>
-                <button class="rating_button"></button>
-                @if (Model.Tutor.RatingCount >= Tutor.MinRatingCount)
-                {
-                    <span>@Model.Tutor.RatingAvgStr/5 z @Model.Tutor.RatingCount ocen</span>
-                }
-                else
-                {
-                    <span>@ConstantTexts.NotEnoughRatings</span>
-                }
+            <div class="rating_widget_wrapper">
+                <h4>Oceny:</h4>
+                <div class="rating_widget">
+                    <button aria-label="Oceń na 1 z 5" class="rating_button"></button>
+                    <button aria-label="Oceń na 2 z 5" class="rating_button"></button>
+                    <button aria-label="Oceń na 3 z 5" class="rating_button"></button>
+                    <button aria-label="Oceń na 4 z 5" class="rating_button"></button>
+                    <button aria-label="Oceń na 5 z 5" class="rating_button"></button>
+                    @if (Model.Tutor.RatingCount >= Tutor.MinRatingCount)
+                    {
+                        <span>@Model.Tutor.RatingAvgStr/5 z @Model.Tutor.RatingCount ocen</span>
+                    }
+                    else
+                    {
+                        <span>@ConstantTexts.NotEnoughRatings</span>
+                    }
+                </div>
             </div>
         </div>
         @if (!SignInManager.IsSignedIn(User))

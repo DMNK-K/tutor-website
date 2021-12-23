@@ -18,14 +18,14 @@ using Microsoft.Extensions.Logging;
 namespace Korki.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class RegisterModel : PageModel
+    public class RegisterAsTutorModel : PageModel
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        public RegisterModel(
+        public RegisterAsTutorModel(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
@@ -41,6 +41,8 @@ namespace Korki.Areas.Identity.Pages.Account
         public InputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
+
+        public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public class InputModel
         {
@@ -66,25 +68,49 @@ namespace Korki.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Required]
+            [Display(Name = "Imię")]
+            [StringLength(50, ErrorMessage = "{0} musi mieć długość max. {1} znaków.")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "Nazwisko")]
+            [StringLength(50, ErrorMessage = "{0} musi mieć długość max. {1} znaków.")]
+            public string LastName { get; set; }
+
+            [Display(Name = "Oficjalna nazwa")]
+            [StringLength(50, ErrorMessage = "{0} musi mieć długość max. {1} znaków.")]
+            public string FormalName { get; set; }
+
+            [Required]
+            [Display(Name = "Miejscowość")]
+            [StringLength(50, ErrorMessage = "{0} musi mieć długość max. {1} znaków.")]
+            public string CityString { get; set; }
+
+            [Required]
             [Display(Name = "Oświadczam, że przeczytałem i akceptuję warunki polityki prywatności")]
             public bool AgreePrivacy { get; set; }
 
             [Required]
             [Display(Name = "Oświadczam, że przeczytałem i akceptuję warunki regulaminu.")]
             public bool AgreeTerms { get; set; }
+
+            //registration as tutor allows 3 subjects to be specified
+
         }
 
-        public void OnGet(string returnUrl = null)
+        public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
-            if (ModelState.IsValid && Input.AgreePrivacy && Input.AgreeTerms)
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            if (ModelState.IsValid)
             {
-                User user = new User() { UserName = Input.Username, Email = Input.Email };
+                var user = new User { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

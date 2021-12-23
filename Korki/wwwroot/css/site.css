@@ -7,11 +7,18 @@ for details on configuring this project to bundle and minify static web assets. 
     /*--color-prim-a: #C8565B;
     --color-prim-b: #C3503C;*/
 
-
     --color-prim-a: #55558B;
     --color-prim-b: #456096;
-
     --color-prim-a-muted: #b6b6d3;
+    /*--color-accent-a: #F4632A;
+    --color-accent-b: #41EAD4;*/
+    --color-bcg_base: #F3EFF5;
+    --color-shadow-bright: white;
+    --color-shadow-dark: #DAD4E3;
+    --color-text-default: #343756;
+    --color-bad: #DF2935;
+    --color-accent-a: #1AC8ED;
+    --color-accent-b: #72E37C;
 }
 
 
@@ -26,11 +33,14 @@ html {
 }
 
 body {
-    margin:0;
-    min-height:100vh;
-    padding-bottom:60px;
-    position:relative;
-    font-family:"Segoe UI", "Roboto", "Segoe UI Emoji", "Segoe UI Symbol", "Arial";
+    background-color: var(--color-bcg_base);
+    margin: 0;
+    min-height: 100vh;
+    padding-bottom: 60px;
+    position: relative;
+    color: black; /*fallback*/
+    color: var(--color-text-default);
+    font-family: "Segoe UI", "Roboto", "Segoe UI Emoji", "Segoe UI Symbol", "Arial";
 }
 
 a{
@@ -153,6 +163,7 @@ footer {
 /*Inputs site-wide*/
 
 input {
+    color: var(--color-text-default);
     font-family: "Segoe UI", "Roboto", "Segoe UI Emoji", "Segoe UI Symbol", "Arial";
 }
 
