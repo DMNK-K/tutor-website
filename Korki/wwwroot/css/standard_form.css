@@ -96,9 +96,11 @@
 
 /*======== inputs ==========*/
 .st_form input, .st_form select {
-    border:none;
-    border-radius:10px;
-    background-color:var(--color-bcg-default);
+    border: 1px solid;
+    border-color: var(--color-shadow-bright-transp) var(--color-shadow-dark-transp) var(--color-shadow-dark-transp) var(--color-shadow-bright-transp);
+
+    border-radius: 10px;
+    background-color: var(--color-bcg-default);
 }
 
 .st_form input{

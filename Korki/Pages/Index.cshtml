@@ -18,8 +18,8 @@
         </p>
         @* notice the form is get method, but goes to Search page, that page model also has BasicSearchTerms model in it*@
         <form method="get" asp-page="/Search" class="hero_search_form">
-            <input class="hero_input_text hero_input_name" asp-for="BasicTerms.Name" type="text" placeholder="przedmiot lub korepetytor" />
-            <input class="hero_input_text hero_input_city" asp-for="BasicTerms.City" type="text" placeholder="miejscowość" />
+            <input class="hero_input_name" asp-for="BasicTerms.Name" type="text" placeholder="przedmiot lub korepetytor" />
+            <input class="hero_input_city" asp-for="BasicTerms.City" type="text" placeholder="miejscowość" />
             <select class="hero_input_select" asp-for="BasicTerms.LevelStr" asp-items="Model.BasicTerms.PickableLevels"></select>
             <button class="hero_input_submit" type="submit">Szukaj</button>
         </form>

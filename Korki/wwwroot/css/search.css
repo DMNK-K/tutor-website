@@ -1,7 +1,8 @@
-﻿.search_bar{
-    margin-top:60px;
-    width:100%;
-    padding:0 18%;
+﻿.search_bar {
+    width: 100%;
+    padding: 45px 18% 35px 18%;
+    box-shadow: var(--color-shadow-dark) 6px 6px 12px;
+    /*box-shadow: var(--color-shadow-dark) 6px 6px 12px, var(--color-shadow-bright) -6px -6px 12px;*/
 }
 
 .search_bar form{
@@ -15,31 +16,58 @@
 }
 
 .search_form_row_bot{
-    margin-top:20px;
+    margin-top:22px;
+    align-items:center;
+}
+
+.search_form_box{
+    display:flex;
+    padding:0 1%;
+    flex-grow:1;
+    justify-content:center;
     align-items:center;
 }
 
 .search_result_wrapper {
     width: 66%;
-    margin: 40px 0 0 17%;
+    margin: 25px 0 0 17%;
     display: flex;
     flex-wrap:wrap;
     justify-content: flex-start;
 }
 
+
 /*Search form inputs*/
-.search_form_row_top input, .search_form_row_top select{
-    height:55px;
-    font-size:18px;
-    padding:0 8px;
+.search_form_row_top input, .search_form_row_top select {
+    height: 55px;
+    font-size: 18px;
+    padding: 0 1.5%;
+    background-color: var(--color-bcg-base);
+    border-radius:12px;
+    box-shadow: var(--color-shadow-dark) 4px 4px 10px, var(--color-shadow-bright) -4px -4px 10px;
+    border:none;
 }
 
-.search_form_row_bot input, .search_form_row_bot select{
-    height: 30px;
-    padding: 0 4px;
+.search_form_bot_input {
+    flex-grow: 1;
+    height: 32px;
+    padding: 0 6px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--color-bcg-base);
+    box-shadow: var(--color-shadow-dark) 2px 2px 6px, var(--color-shadow-bright) -2px -2px 6px;
 }
 
-.search_form_row_bot input, .search_form_row_bot select, .search_form_row_bot p, .search_form_row_bot label {
+.search_bar select{
+    cursor:pointer;
+}
+
+.search_bar input::placeholder {
+    opacity: 1;
+    color: var(--color-text-placeholder);
+}
+
+.search_form_bot_input, .search_form_row_bot p, .search_form_row_bot label {
     font-size: 16px;
 }
 
@@ -69,22 +97,54 @@
     width:15%;
 }
 
-.search_submit{
-    width:10%;
+.search_submit {
+    width: 10%;
+    background-color: var(--color-accent-b);
+    border-radius: 12px;
+    box-shadow: var(--color-shadow-dark) 4px 4px 10px, var(--color-shadow-bright) -4px -4px 10px;
+    border: none;
 }
 
-.search_checkbox{
-    margin-top:2px;
+.search_checkbox {
+    flex-grow: 0;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    appearance: none;
+    padding: 0;
+    position: relative;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    box-shadow: inset var(--color-shadow-dark) 1px 1px 4px, var(--color-shadow-bright) -1px -1px 4px;
+}
+
+.search_shortened_input{
+   max-width:80px;
+}
+
+.search_checkbox:checked:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 45%;
+    border-radius: 25%;
+    background-color: var(--color-prim-a);
+    box-shadow: var(--color-shadow-dark) 1px 1px 4px, var(--color-shadow-bright) -1px -1px 4px;
 }
 
 /*Tutor result layout of contents*/
 
-.tutor_result_box{
-    width:48%;
-    margin:6px 1%;
-    height:210px;
-    padding:12px 16px;
-    border:1px solid gray;
+.tutor_result_box {
+    width: calc(50% - 14px);
+    margin: 7px 7px;
+    height: 210px;
+    padding: 1.5% 2%;
+    background-color: var(--color-bcg-base);
+    border-radius: 14px;
+    box-shadow: var(--color-shadow-dark) 6px 6px 12px, var(--color-shadow-bright) -6px -6px 12px;
 }
 
 .tutor_result_top{
@@ -142,12 +202,14 @@
     width: 20px;
     height: 20px;
     margin: 0 1px;
-    background-color: var(--color-prim-a-muted);
+    box-shadow: inset var(--color-shadow-dark) 4px 4px 7px, inset var(--color-shadow-bright) -4px -4px 7px;
+    /*background-color: var(--color-prim-a-muted);*/
 }
 
-.rating_circle_full{
-    background-color:var(--color-prim-a);
-    
+.rating_circle_full {
+    /*background-color:var(--color-prim-a);*/
+    background-color: var(--color-accent-b);
+    box-shadow: inset var(--color-accent-dark) 4px 4px 7px, inset var(--color-accent-bright) -4px -4px 7px;
 }
 
 .tutor_rating_box span{

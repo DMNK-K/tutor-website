@@ -50,13 +50,18 @@
 .hero_welcome_row{
     width:60%;
     margin-left:20%;
-    margin-top:70px;
+    margin-top:60px;
     display:flex;
     justify-content:space-between;
 }
 
-.hero_invitation_box{
-    width:30%;
+.hero_invitation_box {
+    width: 31.5%;
+    padding: 2%;
+    /*background-color: rgba(255, 255, 255, 0.1);*/
+    background: linear-gradient(135deg, var(--color-glass-light) 0%, var(--color-glass-normal) 30%, var(--color-glass-strong) 33%, var(--color-glass-normal) 36%, var(--color-glass-normal) 40%, var(--color-glass-strong) 45%, var(--color-glass-strong) 48%, var(--color-glass-normal) 54%, var(--color-glass-light) 100%);
+    border-radius: 10px;
+    border: 1px solid var(--color-glass-normal);
 }
 
 .hero_invitation_box a{
@@ -67,19 +72,27 @@
     margin-top:40px;
     height:60px;
     display:flex;
-    width:62%;
-    margin-left:19%;
-    justify-content:space-between;
+    width:66%;
+    margin-left:17%;
+    justify-content:space-around;
 }
 
-.hero_input_text{
-    font-family:"Segoe UI", "Roboto", "Segoe UI Emoji", "Arial";
-    padding:0 8px;
-    font-size:16px;
+.hero_input_city, .hero_input_name, .hero_input_select {
+    border-radius: 10px;
+    border: none;
+    background-color: var(--color-bcg-base);
+    font-family: "Segoe UI", "Roboto", "Segoe UI Emoji", "Arial";
+    padding: 0 1%;
+    font-size: 16px;
 }
 
-.hero_input_city{
-    width:25%;
+.hero_input_city::placeholder, .hero_input_name::placeholder{
+    opacity:1;
+    color:var(--color-text-placeholder);
+}
+
+.hero_input_city {
+    width: 30%;
 }
 
 .hero_input_name {
@@ -87,10 +100,9 @@
 }
 
 .hero_input_select {
-    width: 20%;
+    width: 22%;
     font-family: "Segoe UI", "Roboto", "Segoe UI Emoji", "Arial";
     font-size: 16px;
-    padding:0 8px;
 }
 
 .hero_input_submit {

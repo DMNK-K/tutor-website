@@ -19,21 +19,21 @@
         </div>
         <div class="search_form_row search_form_row_bot">
             <p>Filtruj:</p>
-            <div class="label_and_input_box search_narrow">
+            <div class="search_form_box">
                 <label for="input_min_rating">Min. ocena:</label>
-                <input class="input_number browser_width_override" type="number" id="input_min_rating" asp-for="MinRating"/>
+                <input class="search_form_bot_input search_shortened_input input_number" type="number" id="input_min_rating" asp-for="MinRating"/>
             </div>
-            <div class="label_and_input_box">
+            <div class="search_form_box">
                 <label for="input_no_rating">Pomiń profile bez ocen:</label>
-                <input class="search_checkbox" type="checkbox" asp-for="SkipNonRated" id="input_no_rating"/>
+                <input class="search_form_bot_input search_checkbox" type="checkbox" asp-for="SkipNonRated" id="input_no_rating"/>
             </div>
-            <div class="label_and_input_box search_wide">
+            <div class="search_form_box">
                 <label for="input_service_loc">Miejsce usługi:</label>
-                <select class="input_select" name="PlaceStr" asp-for="PlaceStr" asp-items="Model.PickablePlaces" id="input_service_loc"></select>
+                <select class="search_form_bot_input input_select" name="PlaceStr" asp-for="PlaceStr" asp-items="Model.PickablePlaces" id="input_service_loc"></select>
             </div>
-            <div class="label_and_input_box search_narrow">
+            <div class="search_form_box">
                 <label for="input_max_price">Posiada informacje o cenie:</label>
-                <input class="input_number browser_width_override" type="checkbox" id="input_max_price" asp-for="RequirePriceInfo"/>
+                <input class="search_form_bot_input search_checkbox" type="checkbox" id="input_max_price" asp-for="RequirePriceInfo"/>
             </div>
         </div>
     </form>

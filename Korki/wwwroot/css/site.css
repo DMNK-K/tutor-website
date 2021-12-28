@@ -12,19 +12,31 @@ for details on configuring this project to bundle and minify static web assets. 
     --color-prim-a-muted: #b6b6d3;
     /*--color-accent-a: #F4632A;
     --color-accent-b: #41EAD4;*/
-    --color-bcg_base: #F3EFF5;
+    --color-bcg-base: #F3EFF5;
     --color-shadow-bright: white;
     --color-shadow-dark: #DAD4E3;
+    --color-shadow-bright-transp: rgba(255, 255, 255, 0.3);
+    --color-shadow-dark-transp: rgba(218, 212, 227, 0.3);
     --color-text-default: #343756;
+    --color-text-placeholder: rgb(168 168 168);
     --color-bad: #DF2935;
     --color-accent-a: #1AC8ED;
     --color-accent-b: #72E37C;
+    --color-accent-a-dark: #1ab0d0;
+    --color-accent-b-dark: #5dc867;
+
+    --color-accent-a-bright: #49dfff;
+    --color-accent-b-bright: #a4ffac;
+
+    --color-glass-light:rgba(255, 255, 255, 0.02);
+    --color-glass-normal:rgba(255, 255, 255, 0.06);
+    --color-glass-strong:rgba(255, 255, 255, 0.07);
 }
 
 
-
 html {
-  font-size: 14px;
+    box-sizing: border-box;
+    font-size: 14px;
 }
 @media (min-width: 768px) {
   html {
@@ -32,8 +44,12 @@ html {
   }
 }
 
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
 body {
-    background-color: var(--color-bcg_base);
+    background-color: var(--color-bcg-base);
     margin: 0;
     min-height: 100vh;
     padding-bottom: 60px;
@@ -84,6 +100,7 @@ h4{
 h5 {
     font-size: 16px;
     font-weight: normal;
+    margin-top:0;
 }
 
 /* Header and nav stuff*/
