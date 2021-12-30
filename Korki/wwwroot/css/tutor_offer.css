@@ -1,7 +1,9 @@
 ﻿.tutor_offer_wrapper {
-    width: 66%;
-    margin: 40px 0 0 17%;
-    padding-bottom:20px;
+    width: 68%;
+    margin: 40px 0 0 16%;
+    padding:25px 1.5%;
+    border-radius:18px;
+    box-shadow: var(--color-shadow-dark) 8px 8px 16px, var(--color-shadow-bright) -8px -8px 16px;
 }
 
 .tutor_desc{
@@ -9,18 +11,22 @@
     text-align:justify;
     text-align-last:left;
     min-width:40%;
-    min-height:160px;
+    min-height:140px;
     margin-right:2%;
+    margin-top:10px;
 }
 
 .tutor_info_box {
     min-width: 40%;
     margin-left: 2%;
-    min-height: 160px;
+    margin-top: 10px;
+    min-height: 140px;
 }
 
-.tutor_timetable{
-    width:100%;
+.tutor_timetable {
+    width: 100%;
+    overflow-x: auto;
+    box-shadow: inset var(--color-shadow-dark) 5px 5px 10px, inset var(--color-shadow-bright) -5px -5px 10px;
 }
 
 .rating_widget_wrapper{
@@ -28,11 +34,20 @@
 }
 
 .rating_widget{
-
+    display:flex;
+    align-items:center;
 }
 
-.rating_button{
-    width:22px;
-    height:22px;
-    margin-right:2px;
+.rating_button {
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
+    background-color:var(--color-bcg-base);
+    border:none;
+    border-radius:6px;
+    box-shadow: inset var(--color-shadow-dark) 2px 2px 3px, inset var(--color-shadow-bright) -2px -2px 3px;
+}
+
+.rating_notice{
+
 }

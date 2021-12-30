@@ -26,11 +26,14 @@
     position: absolute;
     bottom: 60px;
     top: 60px;
-    background: linear-gradient(var(--color-prim-a), var(--color-prim-b));
+    background-image:url(/hero_img.jpg);
 }
 
-.hero_box{
-    height:100%;
+.hero_box {
+    height: 100%;
+    /*background: linear-gradient(var(--color-prim-a), var(--color-prim-b));*/
+    /*background: linear-gradient(var(--color-prim-a-transp), var(--color-prim-b-transp));*/
+    background: linear-gradient(var(--color-prim-a) 0%, var(--color-prim-betweent-transp) 50%, var(--color-prim-b) 100%);
 }
 
 .hero_box_inside {
@@ -45,6 +48,7 @@
     margin-top: 40px;
     font-size: 18px;
     font-weight: bold;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4);
 }
 
 .hero_welcome_row{
@@ -62,6 +66,8 @@
     background: linear-gradient(135deg, var(--color-glass-light) 0%, var(--color-glass-normal) 30%, var(--color-glass-strong) 33%, var(--color-glass-normal) 36%, var(--color-glass-normal) 40%, var(--color-glass-strong) 45%, var(--color-glass-strong) 48%, var(--color-glass-normal) 54%, var(--color-glass-light) 100%);
     border-radius: 10px;
     border: 1px solid var(--color-glass-normal);
+    backdrop-filter: blur( 5px );
+    -webkit-backdrop-filter: blur( 5px );
 }
 
 .hero_invitation_box a{
@@ -74,7 +80,7 @@
     display:flex;
     width:66%;
     margin-left:17%;
-    justify-content:space-around;
+    justify-content:space-between;
 }
 
 .hero_input_city, .hero_input_name, .hero_input_select {
@@ -108,4 +114,7 @@
 .hero_input_submit {
     width: 15%;
     font-size: 16px;
+    border-radius:10px;
+    border:none;
+    background-color:var(--color-accent-b);
 }
